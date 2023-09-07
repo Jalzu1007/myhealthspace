@@ -8,6 +8,8 @@ import SignupForm from './components/SignupForm';
 
 
 function App() {
+// this is where to set up the nav click fucntion and use state//
+
   return (
     <div className="App">
       {<AppNavbar/>}
