@@ -1,5 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginForm from './components/LoginForm';
+import Navbar from './components/Navbar';
+import SignupForm from './components/SignupForm';
+
+
+
 
 function App() {
   return (
