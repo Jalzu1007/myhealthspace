@@ -9,7 +9,11 @@ import Homepage from './components/Homepage';
 
 
 function App() {
-// this is where to set up the nav click fucntion and use state//
+  const [activeSection, setActiveSection] = useState('homepage'); 
+
+  const handleNavClick = (section) => {
+    setActiveSection(section);
+  };
 
   return (
     <div className="App">
