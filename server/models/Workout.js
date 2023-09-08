@@ -1,24 +1,39 @@
-const { Schema, model } = require('mongoose');
+// models/workout.js
+const { Schema, model } = require('mongoose')
 
-const matchupSchema = new Schema({
-  tech1: {
-    type: String,
-    required: true,
-  },
-  tech2: {
-    type: String,
-    required: true,
-  },
-  tech1_votes: {
-    type: Number,
-    default: 0,
-  },
-  tech2_votes: {
-    type: Number,
-    default: 0,
-  },
-});
+const workoutSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    type: {
+        type: String,
+        required: true,
+    },
+    muscle: {
+        type: String,
+        required: true,
+    },
+    equipment: {
+        type: String,
+        required: true,
+    },
+    difficulty: {
+        type: String,
+        required: true,
+    },
+    instructions: {
+        type: String,
+        required: true,
+    },
+    postId: {
+        type: String,
+        required: true,
+      },
+    timestamp: {
+        type: Date,
+        default: Date.now,
+    },
+    });
 
-const Matchup = model('Matchup', matchupSchema);
-
-module.exports = Matchup;
+module.exports = model('Workout', workoutSchema);
