@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const ResistanceSchema = new Schema(
+const resistanceSchema = new Schema(
   {
     type: {
       type: String,
@@ -36,6 +36,6 @@ const ResistanceSchema = new Schema(
   }
 );
 
-const Resistance = model("Resistance", ResistanceSchema);
+const Resistance = model("Resistance", resistanceSchema);
 
 module.exports = Resistance;

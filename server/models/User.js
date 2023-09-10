@@ -13,6 +13,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
+    required: true,
     match: [/.+@.+\..=/],
   },
   password: {
@@ -21,14 +22,16 @@ const userSchema = new Schema({
     required: "Password is Required",
     minlength: 6,
   },
-  cardio: [{
-    type: Schema.Types.ObjectId,
-    ref: "Cardio"
-  }],
-  resistance: [{
-    type: Schema.Types.ObjectId,
-    ref: "Resistance"
-  }]
+  savedWorkouts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Cardio',
+    },
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Resistance',
+    }
+  ]
 });
 
 // set up pre-save middleware to create password

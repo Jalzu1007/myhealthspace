@@ -6,9 +6,10 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String
-    cardio: [Cardio]
-    resistance: [Resistance]
+    savedWorkouts: [Workout]
   }
+
+  union Workout = Cardio | Resistance
 
   type Resistance {
     _id: ID!
@@ -17,7 +18,7 @@ const typeDefs = gql`
     weight: Float!
     sets: Int!
     reps: Int!
-    date: Date!
+    date: String!
     userId: ID!
   }
 
@@ -27,8 +28,23 @@ const typeDefs = gql`
     name: String!
     distance: Float!
     duration: Float!
-    date: Date!
+    date: String!
     userId: ID!
+  }
+
+  input CardioInput {
+    name: String!
+    distance: Float!
+    duration: Float!
+    date: String!
+  }
+  
+  input ResistanceInput {
+    name: String!
+    weight: Float!
+    sets: Int!
+    reps: Int!
+    date: String!
   }
 
   type Auth {
@@ -37,20 +53,23 @@ const typeDefs = gql`
   }
   
   type Query {
-  getCardioById(cardioId: ID!): Cardio
-  getResistanceById(resistanceId: ID!): Resistance
-  getUser: User
-}
+    user: User
+    cardio(_id: ID!): Cardio
+    resistance(_id: ID!): Resistance
+    userWorkouts(userId: ID!): [Workout]
+  }
 
   type Mutation {
   createCardio(cardioInput: CardioInput!): Cardio
-  deleteCardio(cardioId: ID!): Cardio
-  updateCardio(cardioId: ID!, cardioInput: CardioInput!): Cardio
+  updateCardio(_id: ID!, cardioInput: CardioInput!): Cardio
+  deleteCardio(_id: ID!): Cardio
   createResistance(resistanceInput: ResistanceInput!): Resistance
-  deleteResistance(resistanceId: ID!): Resistance
-  updateResistance(resistanceId: ID!, resistanceInput: ResistanceInput!): Resistance
+  updateResistance(_id: ID!, resistanceInput: ResistanceInput!): Resistance
+  deleteResistance(_id: ID!): Resistance
   login(email: String!, password: String!): Auth
-  addUser(username: String!, email: String!, password: String!): Auth
+  createUser(username: String!, email: String!, password: String!): Auth
+  saveCardioWorkout(userId: ID!, cardioId: ID!): User
+  saveResistanceWorkout(userId: ID!, resistanceId: ID!): User
 }
 `;
 
