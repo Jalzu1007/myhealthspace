@@ -1,28 +1,76 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Tech {
+
+  type User {
+    _id: ID!
+    username: String!
+    email: String
+    savedWorkouts: [Workout]
+  }
+
+  union Workout = Cardio | Resistance
+
+  type Resistance {
     _id: ID!
     name: String!
+    type: String!
+    weight: Float!
+    sets: Int!
+    reps: Int!
+    date: String!
+    userId: ID!
   }
 
-  type Matchup {
+  type Cardio {
     _id: ID!
-    tech1: String!
-    tech2: String!
-    tech1_votes: Int
-    tech2_votes: Int
+    type: String!
+    name: String!
+    distance: Float!
+    duration: Float!
+    date: String!
+    userId: ID!
   }
 
+  input CardioInput {
+    name: String!
+    distance: Float!
+    duration: Float!
+    date: String!
+  }
+  
+  input ResistanceInput {
+    name: String!
+    weight: Float!
+    sets: Int!
+    reps: Int!
+    date: String!
+  }
+
+  type Auth {
+    token: String!
+    user: User!
+  }
+  
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    user: User
+    cardio(_id: ID!): Cardio
+    resistance(_id: ID!): Resistance
+    userWorkouts(userId: ID!): [Workout]
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
-  }
+  createCardio(cardioInput: CardioInput!): Cardio
+  updateCardio(_id: ID!, cardioInput: CardioInput!): Cardio
+  deleteCardio(_id: ID!): Cardio
+  createResistance(resistanceInput: ResistanceInput!): Resistance
+  updateResistance(_id: ID!, resistanceInput: ResistanceInput!): Resistance
+  deleteResistance(_id: ID!): Resistance
+  login(email: String!, password: String!): Auth
+  createUser(username: String!, email: String!, password: String!): Auth
+  saveCardioWorkout(userId: ID!, cardioId: ID!): User
+  saveResistanceWorkout(userId: ID!, resistanceId: ID!): User
+}
 `;
 
 module.exports = typeDefs;

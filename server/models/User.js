@@ -5,19 +5,33 @@ const bcrypt = require('bcrypt');
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true,
-    trim: true
+    trim: true,
+    unique: true,
+    required: "Username is Required",
+    
   },
   email: {
     type: String,
+    unique: true,
     required: true,
-    unique: true
+    match: [/.+@.+\..=/],
   },
   password: {
     type: String,
-    required: true,
-    minlength: 5
+    trim: true,
+    required: "Password is Required",
+    minlength: 6,
   },
+  savedWorkouts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Cardio',
+    },
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Resistance',
+    }
+  ]
 });
 
 // set up pre-save middleware to create password
@@ -30,7 +44,7 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-// compare the incoming password with the hashed password
+// hash user password
 userSchema.methods.isCorrectPassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
