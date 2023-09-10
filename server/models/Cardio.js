@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const CardioSchema = new Schema(
+const cardioSchema = new Schema(
   {
     type: {
       type: String,
@@ -32,6 +32,6 @@ const CardioSchema = new Schema(
   }
 );
 
-const Cardio = model("Cardio", CardioSchema);
+const Cardio = model("Cardio", cardioSchema);
 
 module.exports = Cardio;
