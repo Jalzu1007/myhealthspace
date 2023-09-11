@@ -1,14 +1,13 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 // cant use <a> in react, instead, use <link> from react router dom
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Auth from "../utils/auth"
 
 
 export default function Header() {
 
     const loggedIn = Auth.loggedIn();
-    const location = useLocation();
     const isHomePage = location.pathname === '/';
     const isLoginPage = location.pathname === '/login';
     const isSignupPage = location.pathname === '/signup';
@@ -20,7 +19,7 @@ export default function Header() {
           {loggedIn ? (
             <>
               <Navbar.Brand as={Link} to="/" className="brand brand-logged d-flex align-items-center">
-                <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" />
+                {/* <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" /> */}
                 FitTrack
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -35,7 +34,7 @@ export default function Header() {
             </>) :
             (<Navbar.Brand as={Link} to="/" className={`brand brand-new mx-auto d-flex align-items-center
               ${isLoginPage || isSignupPage ? "brand-text" : null}`}>
-              <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" />
+              {/* <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" /> */}
               FitTrack
             </Navbar.Brand>)}
         </Navbar >
