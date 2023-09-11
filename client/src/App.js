@@ -1,61 +1,78 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
-import AppNavbar from './components/Navbar';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
-import Homepage from './components/Homepage';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Home from './pages/Home';
+
+// Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
+// Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
+
 const client = new ApolloClient({
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
-
-
-
 function App() {
-  const [activeSection, setActiveSection] = useState('homepage'); 
-
-  const handleNavClick = (section) => {
-    setActiveSection(section);
-  };
-
   return (
     <ApolloProvider client={client}>
       <Router>
-        <AppNavbar onNavClick={handleNavClick} />
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/signup" component={SignupForm} />
-        </Switch>
+        <div className="flex-column justify-flex-start min-100-vh">
+          {/* <Header /> */}
+          <div className="container">
+            <Routes>
+              <Route 
+                path="/" 
+                element={<Home />} 
+              />
+              {/* <Route 
+                path="/login" 
+                element={<Login />} 
+              />
+              <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
+              <Route 
+                path="/me"
+                element={<Profile />}
+              />
+              <Route 
+                path="/profiles/:username" 
+                element={<Profile />}
+              />
+              <Route path="/thoughts/:thoughtId" 
+                element={<SingleThought />}
+              /> */}
+            </Routes>
+          </div>
+          {/* <Footer /> */}
+        </div>
       </Router>
     </ApolloProvider>
   );
 }
 
 export default App;
+

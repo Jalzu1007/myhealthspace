@@ -22,7 +22,7 @@ export default function SingleExercise() {
 
      // Define the DELETE_EXERCISE mutation
   const [deleteExercise] = useMutation(DELETE_EXERCISE);
-  
+
     useEffect(() => {
         const displayExercise = async (exerciseId) => {
             //get token
