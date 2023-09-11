@@ -3,10 +3,11 @@ import { Navigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
-import { createResistance } from '../utils/API';
-// Import Header/Navbar
+// import { createResistance } from '../utils/API';
 import Header from "./Header";
 import resistanceIcon from "../../public/images/weightlifting.png"
+import { useMutation } from '@apollo/client';
+import { CREATE_RESISTANCE_EXERCISE } from '../graphql/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
 
 export default function Resistance() {
     // Initialize state variables using useState hook
@@ -22,6 +23,9 @@ export default function Resistance() {
     // Check if the user is logged in using Auth.loggedIn()
     const loggedIn = Auth.loggedIn();
     
+    // Define the CREATE_RESISTANCE_EXERCISE mutation
+    const [createResistanceExercise] = useMutation(CREATE_RESISTANCE_EXERCISE);
+
     // Function to handle date changes
     const handleDateChange = date => {
         setStartDate(date);
@@ -49,27 +53,32 @@ export default function Resistance() {
         // If the form is valid, proceed
         if (validateForm(resistanceForm)) {
             try {
-                // Add the user ID to the resistance form
-                resistanceForm.userId = userId;
-
-                // Send a request to create a resistance exercise using the API
-                const response = await createResistance(resistanceForm, token);
-
-                // Check if the request was successful
-                if (!response.ok) {
-                    throw new Error('Oops! Something went wrong.');
-                }
+                const { data } = await createResistanceExercise({
+                  variables: {
+                    resistanceInput: {
+                      name: resistanceForm.name,
+                      weight: parseFloat(resistanceForm.weight),
+                      sets: parseFloat(resistanceForm.sets),
+                      reps:parseFloat(resistanceForm.reps),
+                      date: resistanceForm.date,
+                      userId: userId,
+                    },
+                  },
+                });
 
                 // Clear the message after 3 seconds
-                setMessage("Resistance exercise successfully created!")
-                setTimeout(() => {
-                    setMessage("")
-                }, 3000);
-
-            } catch (err) {
-                console.error(err)
-            }
-        }
+                if (data.createResistance) {
+                    setMessage('Resistance successfully added!');
+                    setTimeout(() => {
+                      setMessage('');
+                    }, 3000);
+                  } else {
+                    console.error('Oops! Something went wrong!');
+                  }
+                } catch (err) {
+                  console.error(err);
+                }
+              }
 
         // Clear the form input
         setResistanceForm({
