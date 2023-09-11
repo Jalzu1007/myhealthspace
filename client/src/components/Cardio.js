@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client'; // Import useMutation
-import { CREATE_CARDIO_EXERCISE } from '../graphql/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
+import { CREATE_CARDIO_EXERCISE } from '../utils/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
 import Header from "./Header";
 
 export default function Cardio() {
