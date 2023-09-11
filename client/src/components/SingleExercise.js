@@ -9,6 +9,7 @@ import { formatDate } from '../utils/dateFormat';
 import Header from "./Header";
 import cardioIcon from "../assets/images/cardio-w.png"
 import resistanceIcon from "../assets/images/resistance-w.png"
+import { DELETE_EXERCISE } from '../graphql/mutations'; // Import the DELETE_EXERCISE mutation
 
 export default function SingleExercise() {
     const { id, type } = useParams();
@@ -19,6 +20,9 @@ export default function SingleExercise() {
     const loggedIn = Auth.loggedIn();
     const navigate = useNavigate()
 
+     // Define the DELETE_EXERCISE mutation
+  const [deleteExercise] = useMutation(DELETE_EXERCISE);
+  
     useEffect(() => {
         const displayExercise = async (exerciseId) => {
             //get token
