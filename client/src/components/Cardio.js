@@ -3,9 +3,9 @@ import { Navigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
-import { createCardio } from '../utils/API';
+import { useMutation } from '@apollo/client'; // Import useMutation
+import { CREATE_CARDIO_EXERCISE } from '../graphql/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
 import Header from "./Header";
-import cardioIcon from "../assets/images/cardio-w.png"
 
 export default function Cardio() {
     const [cardioForm, setCardioForm] = useState({
@@ -17,6 +17,9 @@ export default function Cardio() {
     const [startDate, setStartDate] = useState(new Date());
     const [message, setMessage] = useState("")
     const loggedIn = Auth.loggedIn();
+
+    // Define the CREATE_CARDIO_EXERCISE mutation
+  const [createCardioExercise] = useMutation(CREATE_CARDIO_EXERCISE);
 
     const handleCardioChange = (event) => {
         const { name, value } = event.target;
@@ -39,23 +42,31 @@ export default function Cardio() {
 
         const userId = Auth.getUserId();
         if (validateForm(cardioForm)) {
-            try {
-                // add userid to cardio form
-                cardioForm.userId = userId;
-                const response = await createCardio(cardioForm, token);
+           try {
+        const { data } = await createCardioExercise({
+          variables: {
+            cardioInput: {
+              name: cardioForm.name,
+              distance: parseFloat(cardioForm.distance),
+              duration: parseFloat(cardioForm.duration),
+              date: cardioForm.date,
+              userId: userId,
+            },
+          },
+        });
 
-                if (!response.ok) {
-                    throw new Error('something went wrong!');
-                }
-
-                setMessage("Cardio successfully added!")
-                setTimeout(() => {
-                    setMessage("")
-                }, 3000);
-            } catch (err) {
-                console.error(err)
-            }
+        if (data.createCardio) {
+          setMessage('Cardio successfully added!');
+          setTimeout(() => {
+            setMessage('');
+          }, 3000);
+        } else {
+          console.error('Cardio exercise creation failed.');
         }
+      } catch (err) {
+        console.error(err);
+      }
+    }
         setCardioForm({
             name: "",
             distance: "",
