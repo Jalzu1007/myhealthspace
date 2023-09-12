@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { createUser } from "../utils/API";
 import Auth from "../utils/auth";
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../utils/mutations';
 import Header from "../components/Header";
 
 export default function Signup() {
@@ -16,6 +17,9 @@ export default function Signup() {
 
     // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  // Use the useMutation hook to create the createUserMutation
+  const [createUserMutation, { error }] = useMutation(CREATE_USER);
 
   // update state based on form input
   const handleChange = (event) => {
@@ -33,19 +37,16 @@ export default function Signup() {
 
     // use try/catch to handle errors
     try {
-      // create new users
-      const response = await createUser(formState);
+      const { data } = await createUserMutation({
+        variables: {
+          username: formState.username,
+          email: formState.email,
+          password: formState.password,
+        },
+      });
 
-      // check the response
-      if (!response.ok) {
-        throw new Error("something went wrong!");
-      }
-
-      // get token and user data from server
-      const { token } = await response.json();
-      // use authenticaiton functionality
+      const { token } = data.createUser;
       Auth.login(token);
-
 
     } catch (err) {
       console.error(err);
