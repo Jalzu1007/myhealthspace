@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import Auth from "../utils/auth";
 import Header from "../components/Header";
 //  Import the neccessary Apollo Client dependencies
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
 
