@@ -10,6 +10,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 
+import Header from './components/Header';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+// import SingleExercise from './components/SingleExercise';
+import Profile from './pages/Profile';
+
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -38,18 +45,20 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        
         <div className="flex-column justify-flex-start min-100-vh">
-          {/* <Header /> */}
+          { <Header /> }
           <div className="container">
-            <Routes>
+            <Routes> 
+              
               <Route 
                 path="/" 
                 element={<Home />} 
               />
-              {/* <Route 
+               <Route 
                 path="/login" 
                 element={<Login />} 
-              />
+              /> 
               <Route 
                 path="/signup" 
                 element={<Signup />} 
@@ -62,13 +71,16 @@ function App() {
                 path="/profiles/:username" 
                 element={<Profile />}
               />
-              <Route path="/thoughts/:thoughtId" 
-                element={<SingleThought />}
-              /> */}
+              {/* <Route path="/exercise/:exerciseId" 
+                element={<SingleExercise />}
+              />  */}
+              
             </Routes>
+            
           </div>
-          {/* <Footer /> */}
+         
         </div>
+
       </Router>
     </ApolloProvider>
   );

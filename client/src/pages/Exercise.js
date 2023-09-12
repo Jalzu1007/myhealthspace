@@ -2,8 +2,8 @@ import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import Auth from "../utils/auth";
 import Header from "../components/Header";
-import cardioIcon from "./images/cardio.png"
-import resistanceIcon from "./images/resistance.png"
+import cardioImage from '../images/cardio.png';
+import resistanceImage from '../images/resistance.png';
 
 
 
@@ -24,13 +24,13 @@ export default function Exercise() {
         <h2 className='title'>Add Exercise</h2>
         <div>
           <button className='cardio-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/cardio")}>
-            <img alt="cardio" src={cardioIcon} className="exercise-icon" />
+            <img alt="cardio" src={cardioImage} className="exercise-icon" />
             Cardio
           </button>
         </div>
         <div>
           <button className='resistance-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/resistance")}>
-            <img alt="resistance" src={resistanceIcon} className="exercise-icon" />
+            <img alt="resistance" src={resistanceImage} className="exercise-icon" />
             Resistance
           </button>
         </div>

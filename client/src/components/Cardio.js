@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client'; // Import useMutation
 import { CREATE_CARDIO_EXERCISE } from '../utils/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
 import Header from "./Header";
 
+
 export default function Cardio() {
     const [cardioForm, setCardioForm] = useState({
         name: "",
