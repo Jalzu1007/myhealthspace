@@ -31,11 +31,7 @@ class AuthService {
         // Retrieves the user token from localStorage
         return localStorage.getItem("id_token");
       }
-
-    //   This will get the user id
-      getUserId() {
-        return this.getProfile().data._id
-      }
+      
 // This will set the token to the local storage and reload the page to the homepage.
       login(idToken) {
         // Saves user token to localStorage

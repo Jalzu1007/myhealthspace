@@ -14,7 +14,7 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    match: [/.+@.+\..=/],
+    match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
   },
   password: {
     type: String,
