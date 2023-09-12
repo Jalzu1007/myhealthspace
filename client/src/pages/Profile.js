@@ -4,10 +4,10 @@ import { getMe } from '../utils/API';
 import Auth from "../utils/auth"
 import { formatDate } from '../utils/dateFormat';
 import Header from "../components/Header";
-import cardioIcon from "../assets/images/cardio.png"
-import resistanceIcon from "../assets/images/resistance.png"
+import cardioImage from '../images/cardio.png';
+import resistanceImage from '../images/resistance.png';
 
-export default function History() {
+export default function Profile() {
     const [userData, setUserData] = useState({});
     const [exerciseData, setExerciseData] = useState([])
     const [displayedItems, setDisplayedItems] = useState(6);
@@ -81,14 +81,14 @@ export default function History() {
                           <Link className='text-decoration-none' to={`/history/${exercise.type}/${exercise._id}`}>
                             {exercise.type === "cardio" ? (
                               <div className="history-card cardio-title d-flex">
-                                <div className='d-flex align-items-center'><img alt="cardio" src={cardioIcon} className="history-icon" /></div>
+                                <div className='d-flex align-items-center'><img alt="cardio" src={cardioImage} className="history-icon" /></div>
                                 <div>
                                   <p className='history-name'>{exercise.name}</p>
                                   <p className='history-index'>{exercise.distance} miles </p>
                                 </div>
                               </div>) : (
                               <div className="history-card resistance-title d-flex">
-                                <div className='d-flex align-items-center'><img alt="resistance" src={resistanceIcon} className="history-icon" /></div>
+                                <div className='d-flex align-items-center'><img alt="resistance" src={resistanceImage} className="history-icon" /></div>
                                 <div >
                                   <p className='history-name'>{exercise.name}</p>
                                   <p className='history-index'>{exercise.weight} pounds </p>
