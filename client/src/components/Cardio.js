@@ -4,7 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client'; // Import useMutation
-import { CREATE_CARDIO_EXERCISE } from '../utils/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
+import { CREATE_CARDIO } from '../utils/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
+import cardioIcon from '../images/resistance.png'
 import Header from "./Header";
 
 
@@ -20,7 +21,7 @@ export default function Cardio() {
     const loggedIn = Auth.loggedIn();
 
     // Define the CREATE_CARDIO_EXERCISE mutation
-  const [createCardioExercise] = useMutation(CREATE_CARDIO_EXERCISE);
+  const [createCardioExercise] = useMutation(CREATE_CARDIO);
 
     const handleCardioChange = (event) => {
         const { name, value } = event.target;
