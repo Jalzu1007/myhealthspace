@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
 // import { createResistance } from '../utils/API';
 import Header from "./Header";
-import resistanceIcon from "../../public/images/weightlifting.png"
+import resistanceIcon from "../images/resistance.png"
 import { useMutation } from '@apollo/client';
-import { CREATE_RESISTANCE_EXERCISE } from '../graphql/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
+import { CREATE_RESISTANCE } from '../utils/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
 
 export default function Resistance() {
     // Initialize state variables using useState hook
@@ -24,8 +24,13 @@ export default function Resistance() {
     const loggedIn = Auth.loggedIn();
     
     // Define the CREATE_RESISTANCE_EXERCISE mutation
-    const [createResistanceExercise] = useMutation(CREATE_RESISTANCE_EXERCISE);
+    const [createResistanceExercise] = useMutation(CREATE_RESISTANCE);
 
+    const handleResistanceChange = (event) => {
+        const { name, value } = event.target;
+        setResistanceForm({ ...resistanceForm, [name]: value })
+    }
+    
     // Function to handle date changes
     const handleDateChange = date => {
         setStartDate(date);
@@ -48,7 +53,7 @@ export default function Resistance() {
         if (!token) return false;
 
         // Get the user's ID
-        const userId = Auth.getUserId();
+        const userId = Auth.userId();
 
         // If the form is valid, proceed
         if (validateForm(resistanceForm)) {
