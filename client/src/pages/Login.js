@@ -28,33 +28,35 @@ export default function Login() {
     };
   
     // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
 
-    // check the response
-    try {
+  const handleFormSubmit = async (event) => {
+      event.preventDefault();
+  
+      // check if form has everything (as per react-bootstrap docs)
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+  
+      try {
         const { data } = await loginUserMutation({
           variables: { ...formState },
         });
-  
-        // Check if the login was successful
-        if (data.loginUser.token) {
-          const token = data.loginUser.token;
-          Auth.login(token);
-          console.log(data.loginUser.user);
-        } else {
-          // Handle login error here, if needed
-        }
+        Auth.login(data.login.token);
       } catch (err) {
         console.error(err);
         setShowAlert(true);
       }
   
       setFormState({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
       });
     };
+
+
+
 
     // If the user is logged in, redirect to the home page
   if (loggedIn) {
