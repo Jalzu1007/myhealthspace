@@ -38,6 +38,20 @@ code {
   margin-right: 3px;
 }
 
+/* Styling for the "FitTrack" and "myhealthspace" text in the Navbar */
+.brand.brand-logged {
+  font-size: 40px; /* Adjust the font size as needed */
+  color: #a9ccf9; /* Set the text color to white */
+  font-weight: bold; /* Make the text bold */
+  
+}
+
+.brand.brand-new {
+  font-size: 40px; /* Adjust the font size as needed */
+  color:#a9ccf9; /* Set the text color to white */
+  font-weight: bold; /* Make the text bold */
+}
+
 .brand {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 24px;
@@ -66,10 +80,20 @@ code {
 }
 
 .nav-link {
-  text-align: right;
-  margin-right: 5px;
+  text-align: center;
+  margin-right: 1%;
+  margin-left: 5px; /* Add margin to the left side */
   font-weight: 500;
-  color: white;
+  color: #ffffff;
+  font-size: 25px; /* Adjust the font size as needed */
+  text-decoration: none; /* Remove underlines from links */
+  outline: none; /* Remove the focus outline (the dash) */  
+ 
+}
+
+.navbar-brand {
+  text-decoration: none; /* Remove underlines from links */
+  outline: none; /* Remove the focus outline (the dash) */
 }
 
 .nav-link:hover {
@@ -121,7 +145,7 @@ code {
 }
 
 /* 3. --------------------------------- sign up and login page-------------------------------- */
-.signup,
+/* .signup,
 .history {
   height: 100vh;
 }
@@ -158,8 +182,48 @@ code {
 
 .err-message {
   color: red;
+} */
+
+
+.signup-container {
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* Set a background color for the page */
 }
 
+.signup-card {
+  width: 500px; /* Set the desired width for your card */
+  height: 150px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for the card */
+  border-radius: 10px; /* Add rounded corners to the card */
+  padding: 50px; /* Add some padding to the card */
+}
+
+/* Style your form elements as needed */
+.signup-form label {
+  font-weight: bold;
+}
+
+.signup-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signup-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.link-btn {
+  margin-top: 10px;
+}
 /* --------------------------------- 4. history page---------------------------------   */
 .title {
   margin: 30px auto 20px auto;
@@ -213,17 +277,7 @@ code {
   margin-right: 14px;
 }
 
-.cardio-title,
-.cardio-btn {
-  background-color: var(--main-color);
-  color: black;
-}
 
-.resistance-title,
-.resistance-btn {
-  background-color: lightskyblue;
-  color: black;
-}
 
 .history-name {
   font-weight: bold;
@@ -247,6 +301,46 @@ code {
 }
 
 /* --------------------------------- 5.exercise page---------------------------------   */
+.cardio-title,
+.cardio-btn {
+  background-color: var(--main-color);
+  color: black;
+  /*josh code to center the buttons*/
+  font-size: 36px; /* Increase font size for cardio and resistance elements */
+  padding: 10px 20px; /* Increase padding for cardio and resistance elements */
+  border-radius: 10px; /* Increase border-radius for cardio and resistance elements */
+  margin: 10px auto; /* Center elements horizontally by setting margin to 'auto' */
+  display: block; /* Ensure each element is on its own line */
+  text-align: center; /* Center the text within each element */
+}
+
+.resistance-title,
+.resistance-btn {
+  background-color: lightskyblue;
+  color: black;
+  /*josh code to center the buttons*/
+  font-size: 36px; /* Increase font size for cardio and resistance elements */
+  padding: 10px 20px; /* Increase padding for cardio and resistance elements */
+  border-radius: 10px; /* Increase border-radius for cardio and resistance elements */
+  margin: 10px auto; /* Center elements horizontally by setting margin to 'auto' */
+  display: block; /* Ensure each element is on its own line */
+  text-align: center; /* Center the text within each element */
+}
+/* Josh code Exercise page + container classes*/
+
+.exercise-page {
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+ 
+}
+
+.exercise-container {
+  text-align: center;
+  padding: 60px;
+}
+
+
 .exercise-icon {
   height: 40px;
 }
@@ -269,6 +363,7 @@ code {
 .resistance-btn:hover {
   box-shadow: 0 0 10px 0 whitesmoke inset, 0 0 10px 4px whitesmoke;
 }
+
 
 /* ------------------------------- 6. cardio and resistance page--------------------------------*/
 .exercise-form-icon {
