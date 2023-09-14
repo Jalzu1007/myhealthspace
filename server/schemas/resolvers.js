@@ -112,21 +112,10 @@ const resolvers = {
         { $pull: { savedWorkouts: id } },
         { new: true }
       );
-​
+
       return savedWorkouts; 
     },
 },
 };
-​
+
 module.exports = resolvers;
-Collapse
-
-
-
-
-
-
-
-
-
-
