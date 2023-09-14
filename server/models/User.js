@@ -25,13 +25,9 @@ const userSchema = new Schema({
   savedWorkouts: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Cardio',
+      ref: 'Workouts', 
     },
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Resistance',
-    }
-  ]
+  ],
 });
 
 // set up pre-save middleware to create password
