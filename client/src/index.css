@@ -38,6 +38,20 @@ code {
   margin-right: 3px;
 }
 
+/* Styling for the "FitTrack" and "myhealthspace" text in the Navbar */
+.brand.brand-logged {
+  font-size: 40px; /* Adjust the font size as needed */
+  color: #a9ccf9; /* Set the text color to white */
+  font-weight: bold; /* Make the text bold */
+  
+}
+
+.brand.brand-new {
+  font-size: 40px; /* Adjust the font size as needed */
+  color:#a9ccf9; /* Set the text color to white */
+  font-weight: bold; /* Make the text bold */
+}
+
 .brand {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 24px;
@@ -131,7 +145,7 @@ code {
 }
 
 /* 3. --------------------------------- sign up and login page-------------------------------- */
-.signup,
+/* .signup,
 .history {
   height: 100vh;
 }
@@ -168,8 +182,48 @@ code {
 
 .err-message {
   color: red;
+} */
+
+
+.signup-container {
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* Set a background color for the page */
 }
 
+.signup-card {
+  width: 500px; /* Set the desired width for your card */
+  height: 150px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for the card */
+  border-radius: 10px; /* Add rounded corners to the card */
+  padding: 50px; /* Add some padding to the card */
+}
+
+/* Style your form elements as needed */
+.signup-form label {
+  font-weight: bold;
+}
+
+.signup-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signup-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.link-btn {
+  margin-top: 10px;
+}
 /* --------------------------------- 4. history page---------------------------------   */
 .title {
   margin: 30px auto 20px auto;
@@ -223,6 +277,30 @@ code {
   margin-right: 14px;
 }
 
+
+
+.history-name {
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.history-index {
+  margin: 0 auto;
+  font-size: 13px;
+}
+
+.show-btn {
+  margin: 20px auto;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+}
+
+.show-btn:hover {
+  font-weight: bold;
+}
+
+/* --------------------------------- 5.exercise page---------------------------------   */
 .cardio-title,
 .cardio-btn {
   background-color: var(--main-color);
@@ -263,44 +341,6 @@ code {
 }
 
 
-/* Styling for the "FitTrack" and "myhealthspace" text in the Navbar */
-.brand.brand-logged {
-  font-size: 40px; /* Adjust the font size as needed */
-  color: #a9ccf9; /* Set the text color to white */
-  font-weight: bold; /* Make the text bold */
-  
-}
-
-.brand.brand-new {
-  font-size: 40px; /* Adjust the font size as needed */
-  color:#a9ccf9; /* Set the text color to white */
-  font-weight: bold; /* Make the text bold */
-}
-
-
-
-.history-name {
-  font-weight: bold;
-  margin: 0 auto;
-}
-
-.history-index {
-  margin: 0 auto;
-  font-size: 13px;
-}
-
-.show-btn {
-  margin: 20px auto;
-  border: none;
-  background-color: white;
-  font-size: 15px;
-}
-
-.show-btn:hover {
-  font-weight: bold;
-}
-
-/* --------------------------------- 5.exercise page---------------------------------   */
 .exercise-icon {
   height: 40px;
 }
@@ -323,6 +363,7 @@ code {
 .resistance-btn:hover {
   box-shadow: 0 0 10px 0 whitesmoke inset, 0 0 10px 4px whitesmoke;
 }
+
 
 /* ------------------------------- 6. cardio and resistance page--------------------------------*/
 .exercise-form-icon {

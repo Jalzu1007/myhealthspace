@@ -6,22 +6,17 @@ import { CREATE_USER } from '../utils/mutations';
 import Header from "../components/Header";
 
 export default function Signup() {
-    const loggedIn = Auth.loggedIn();
-  
-    // set up the orginal state of the form
-    const [formState, setFormState] = useState({
-      username: "",
-      email: "",
-      password: "",
-    });
+  const loggedIn = Auth.loggedIn();
 
-    // set state for alert
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
   const [showAlert, setShowAlert] = useState(false);
-
-  // Use the useMutation hook to create the createUserMutation
   const [createUserMutation, { error }] = useMutation(CREATE_USER);
 
-  // update state based on form input
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -31,11 +26,9 @@ export default function Signup() {
     });
   };
 
-   // submit form
-   const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // use try/catch to handle errors
     try {
       const { data } = await createUserMutation({
         variables: {
@@ -47,35 +40,34 @@ export default function Signup() {
 
       const { token, user } = data.createUser;
       Auth.login(token);
-
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
   };
 
-    // If the user is logged in, redirect to the home page
-    if (loggedIn) {
-        return <Navigate to="/" />;
-      }
-    
-      return (
+  if (loggedIn) {
+    return <Navigate to="/" />;
+  }
 
-        <div className="signup d-flex flex-column align-items-center justify-content-center text-center">
-          <Header />
+  return (
+    <div>
+    <Header />
+    <div className="signup-container d-flex flex-column align-items-center justify-content-center">
+      <Card className="signup-card">
+        <Card.Body>
+          
           <form onSubmit={handleFormSubmit} className="signup-form d-flex flex-column">
-            {/* --------------------username-------------------- */}
             <label htmlFor="username">Username</label>
             <input
               className="form-input"
               value={formState.username}
               placeholder="Your username"
               name="username"
-              type="username"
+              type="text"
               onChange={handleChange}
             />
-    
-            {/* --------------------email-------------------- */}
+
             <label htmlFor="email">Email</label>
             <input
               className="form-input"
@@ -85,8 +77,8 @@ export default function Signup() {
               type="email"
               onChange={handleChange}
             />
-    
-            {/* -------------------- password-------------------- */}
+
+            <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               className="form-input"
@@ -96,21 +88,26 @@ export default function Signup() {
               type="password"
               onChange={handleChange}
             />
+            </div>
 
-            {/* --------------------sign up btn-------------------- */}
-        <div className="btn-div">
-          <button disabled={!(formState.username && formState.email && formState.password)}
-            className="signup-btn mx-auto my-auto"
-          >Sign Up</button>
-        </div>
+            <div className="btn-div">
+              <button
+                disabled={!(formState.username && formState.email && formState.password)}
+                className="signup-btn mx-auto my-auto"
+              >
+                Sign Up
+              </button>
+            </div>
 
-        {/* --------------------login link-------------------- */}
-        <p className="link-btn">
-          Already have an account?{' '}
-          <Link to="/login">Log in</Link>
-        </p>
-        {showAlert && <div className="err-message">Signup failed</div>}
-      </form>
+            <p className="link-btn">
+              Already have an account?{' '}
+              <Link to="/login">Log in</Link>
+            </p>
+            {showAlert && <div className="err-message">Signup failed</div>}
+          </form>
+        </Card.Body>
+      </Card>
+    </div>
     </div>
   );
 }
