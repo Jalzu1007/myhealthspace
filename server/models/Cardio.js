@@ -2,11 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const cardioSchema = new Schema(
   {
-    type: {
-      type: String,
-      default: "cardio",
-      required: true
-    },
     name: {
       type: String,
       required: true,

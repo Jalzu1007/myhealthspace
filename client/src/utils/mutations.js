@@ -11,7 +11,6 @@ export const LOGIN_USER = gql`
         savedWorkouts{
           ... on Cardio {
             _id
-            type
             name
             distance
             duration
@@ -19,7 +18,6 @@ export const LOGIN_USER = gql`
           }
           ... on Resistance {
             _id
-            type
             name
             weight
             sets
@@ -48,7 +46,6 @@ export const CREATE_CARDIO = gql`
   mutation createCardio($cardioInput: CardioInput!) {
     createCardio(cardioInput: $cardioInput) {
       _id
-      type
       name
       distance
       duration
@@ -61,7 +58,6 @@ export const UPDATE_CARDIO = gql`
   mutation updateCardio($_id: ID!, $cardioInput: CardioInput!) {
     updateCardio(_id: $_id, cardioInput: $cardioInput) {
       _id
-      type
       name
       distance
       duration
@@ -81,7 +77,6 @@ export const CREATE_RESISTANCE = gql`
     createResistance(resistanceInput: $resistanceInput) {
       _id
       name
-      type
       weight
       sets
       reps
@@ -95,7 +90,6 @@ export const UPDATE_RESISTANCE = gql`
     updateResistance(_id: $_id, resistanceInput: $resistanceInput) {
       _id
       name
-      type
       weight
       sets
       reps
