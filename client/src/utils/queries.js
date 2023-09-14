@@ -18,7 +18,6 @@ import { gql } from '@apollo/client';
     query cardio($_id: ID!) {
       cardio(_id: $_id) {
         _id
-        type
         name
         distance
         duration
@@ -32,7 +31,6 @@ import { gql } from '@apollo/client';
     query resistance($_id: ID!) {
       resistance(_id: $_id) {
         _id
-        type
         name
         weight
         sets
@@ -48,7 +46,6 @@ import { gql } from '@apollo/client';
       workouts(userId: $userId) {
         _id
         name
-        type
       }
     }
   `;

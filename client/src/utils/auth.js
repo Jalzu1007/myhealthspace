@@ -27,7 +27,7 @@ class AuthService {
       }
       // get user id
       getUserId() {
-        return localStorage.getItem('userId')
+        return localStorage.getItem('id_token')
       }
       
     // This will retrieve the token from the local storage 

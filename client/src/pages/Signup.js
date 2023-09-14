@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Header from "../components/Header";
+import localStorage from "../utils/localStorage"
 
 export default function Signup() {
     const loggedIn = Auth.loggedIn();
@@ -45,7 +46,7 @@ export default function Signup() {
         },
       });
 
-      const { token } = data.createUser;
+      const { token, user } = data.createUser;
       Auth.login(token);
 
     } catch (err) {

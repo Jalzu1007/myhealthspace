@@ -53,7 +53,7 @@ export default function Resistance() {
         if (!token) return false;
 
         // Get the user's ID
-        const userId = Auth.userId();
+        const userId = Auth.getUserId();
 
         // If the form is valid, proceed
         if (validateForm(resistanceForm)) {
@@ -77,8 +77,10 @@ export default function Resistance() {
                     setTimeout(() => {
                       setMessage('');
                     }, 3000);
-                  } else {
-                    console.error('Oops! Something went wrong!');
+                } else {
+                    // Handle server validation errors here
+                    const errorMessages = data.errors.map(error => error.message);
+                    console.error('Server validation errors:', errorMessages);
                   }
                 } catch (err) {
                   console.error(err);

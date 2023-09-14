@@ -14,7 +14,6 @@ const typeDefs = gql`
   type Resistance {
     _id: ID!
     name: String!
-    type: String!
     weight: Float!
     sets: Int!
     reps: Int!
@@ -24,7 +23,6 @@ const typeDefs = gql`
 
   type Cardio {
     _id: ID!
-    type: String!
     name: String!
     distance: Float!
     duration: Float!
@@ -45,6 +43,7 @@ const typeDefs = gql`
     sets: Int!
     reps: Int!
     date: String!
+    userId: String!
   }
 
   type Auth {
