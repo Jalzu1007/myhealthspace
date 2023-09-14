@@ -19,7 +19,6 @@ import Exercise from './pages/Exercise';
 import Error from './pages/Error';
 import Cardio from './components/Cardio';
 import Resistance from './components/Resistance';
-import SingleExercise from './components/SingleExercise'
 
 
 // Construct our main GraphQL API endpoint
@@ -59,7 +58,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/:type/:id" element={<SingleExercise />} />
+            {/* <Route path="/profile/:type/:id" element={<SingleExercise />} /> */}
             <Route path="/exercise" element={<Exercise />} />
             <Route path="/exercise/cardio" element={<Cardio />} />
             <Route path="/exercise/resistance" element={<Resistance />} />
