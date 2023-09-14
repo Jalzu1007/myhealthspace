@@ -8,8 +8,16 @@ export const LOGIN_USER = gql`
         _id
         username
         email
-        savedWorkouts{
-      
+        savedWorkouts {
+          _id
+          type
+          name
+          distance
+          duration
+          weight
+          sets
+          reps
+          date
         }
       }
     }
