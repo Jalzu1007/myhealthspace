@@ -6,7 +6,10 @@ import Auth from "../utils/auth";
 import { useLocation } from "react-router-dom";
 
 
-export default function Header() {
+
+
+
+ function Header() {
   const location = useLocation(); // Use the useLocation hook to get the location object
   const loggedIn = Auth.loggedIn();
   const isHomePage = location.pathname === '/';
@@ -22,9 +25,9 @@ export default function Header() {
             <>
               <Navbar.Brand as={Link} to="/" className="brand brand-logged d-flex align-items-center">
                 {/* <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" /> */}
-                FitTrack
+                myhealthspace
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar aria-controls="responsive-navbar-nav"/>
               <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                 <Nav >
                   {/* use eventKey to show navbar style from react bootstrap */}
@@ -43,4 +46,4 @@ export default function Header() {
       );
     }
 
-
+    export default Header

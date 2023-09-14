@@ -7,6 +7,8 @@ import resistanceImage from '../images/resistance.png';
 
 
 
+
+
 export default function Exercise() {
   const loggedIn = Auth.loggedIn();
   const navigate = useNavigate()
@@ -18,18 +20,19 @@ export default function Exercise() {
   }
 
   return (
+    // <div className="exercise-page" style={{ backgroundImage: `url(${backgroundImage})` }}>
     <div>
       <Header />
-      <div className="exercise d-flex flex-column align-items-center">
+      <div className="exercise-container">
         <h2 className='title'>Add Exercise</h2>
         <div>
-          <button className='cardio-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/cardio")}>
+          <button className='cardio-btn' onClick={() => navigate("/exercise/cardio")}>
             <img alt="cardio" src={cardioImage} className="exercise-icon" />
             Cardio
           </button>
         </div>
         <div>
-          <button className='resistance-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/resistance")}>
+          <button className='resistance-btn' onClick={() => navigate("/exercise/resistance")}>
             <img alt="resistance" src={resistanceImage} className="exercise-icon" />
             Resistance
           </button>
@@ -38,3 +41,25 @@ export default function Exercise() {
     </div>
   );
 }
+
+//   return (
+//     <div>
+//       <Header />
+//       <div className="exercise d-flex flex-column align-items-center">
+//         <h2 className='title'>Add Exercise</h2>
+//         <div>
+//           <button className='cardio-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/cardio")}>
+//             <img alt="cardio" src={cardioImage} className="exercise-icon" />
+//             Cardio
+//           </button>
+//         </div>
+//         <div>
+//           <button className='resistance-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/resistance")}>
+//             <img alt="resistance" src={resistanceImage} className="exercise-icon" />
+//             Resistance
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

@@ -66,10 +66,20 @@ code {
 }
 
 .nav-link {
-  text-align: right;
-  margin-right: 5px;
+  text-align: center;
+  margin-right: 1%;
+  margin-left: 5px; /* Add margin to the left side */
   font-weight: 500;
-  color: white;
+  color: #ffffff;
+  font-size: 25px; /* Adjust the font size as needed */
+  text-decoration: none; /* Remove underlines from links */
+  outline: none; /* Remove the focus outline (the dash) */  
+ 
+}
+
+.navbar-brand {
+  text-decoration: none; /* Remove underlines from links */
+  outline: none; /* Remove the focus outline (the dash) */
 }
 
 .nav-link:hover {
@@ -217,13 +227,57 @@ code {
 .cardio-btn {
   background-color: var(--main-color);
   color: black;
+  /*josh code to center the buttons*/
+  font-size: 36px; /* Increase font size for cardio and resistance elements */
+  padding: 10px 20px; /* Increase padding for cardio and resistance elements */
+  border-radius: 10px; /* Increase border-radius for cardio and resistance elements */
+  margin: 10px auto; /* Center elements horizontally by setting margin to 'auto' */
+  display: block; /* Ensure each element is on its own line */
+  text-align: center; /* Center the text within each element */
 }
 
 .resistance-title,
 .resistance-btn {
   background-color: lightskyblue;
   color: black;
+  /*josh code to center the buttons*/
+  font-size: 36px; /* Increase font size for cardio and resistance elements */
+  padding: 10px 20px; /* Increase padding for cardio and resistance elements */
+  border-radius: 10px; /* Increase border-radius for cardio and resistance elements */
+  margin: 10px auto; /* Center elements horizontally by setting margin to 'auto' */
+  display: block; /* Ensure each element is on its own line */
+  text-align: center; /* Center the text within each element */
 }
+/* Josh code Exercise page + container classes*/
+
+.exercise-page {
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+ 
+}
+
+.exercise-container {
+  text-align: center;
+  padding: 60px;
+}
+
+
+/* Styling for the "FitTrack" and "myhealthspace" text in the Navbar */
+.brand.brand-logged {
+  font-size: 40px; /* Adjust the font size as needed */
+  color: #a9ccf9; /* Set the text color to white */
+  font-weight: bold; /* Make the text bold */
+  
+}
+
+.brand.brand-new {
+  font-size: 40px; /* Adjust the font size as needed */
+  color:#a9ccf9; /* Set the text color to white */
+  font-weight: bold; /* Make the text bold */
+}
+
+
 
 .history-name {
   font-weight: bold;
