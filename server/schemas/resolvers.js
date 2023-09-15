@@ -1,7 +1,7 @@
 const { User, Workouts } = require('../models');
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-​
+
 const resolvers = {
   Query: {
    getUser: async (parent, args, context) => {
@@ -22,19 +22,16 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-​
       const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
-      }
+    }    
       const token = signToken(user);
-​
       return { token, user };
   },
     createUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
-​
       return { token, user };
   },
     createWorkout: async (parent, { input }, context) => {
@@ -42,24 +39,21 @@ const resolvers = {
     if (!context.user) {
       throw new AuthenticationError('User not authenticated');
     }
-​
     const workout = new Workouts({
       ...input,
       userId: context.user._id,
     });
-​
   
     await workout.save();
-​
+
     await User.findByIdAndUpdate(
       context.user._id,
       { $push: { savedWorkouts: workout._id } },
       { new: true }
     );
-​
     return workout;
   },
-​
+
     updateWorkout: async (parent, { id, input }, context) => {
       if (!context.user) {
         throw new AuthenticationError('User not authenticated');
@@ -98,15 +92,15 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError('User not authenticated');
       }
-​
+
       const existingWorkout = await Workouts.findById(id);
-​
+
       if (!existingWorkout || existingWorkout.userId.toString() !== context.user._id.toString()) {
         throw new AuthenticationError('Unauthorized');
       }
-​
+
       await Workouts.findByIdAndRemove(id);
-​
+
       await User.findByIdAndUpdate(
         context.user._id,
         { $pull: { savedWorkouts: id } },
