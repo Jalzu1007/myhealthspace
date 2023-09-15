@@ -5,16 +5,16 @@ const { AuthenticationError } = require("apollo-server-express");
 const resolvers = {
   Query: {
    getUser: async (parent, args, context) => {
-      if (!context.user) {
-        const user = await User.findById(context.user._id);
+      if (context.user) {
+        const user = await User.findById({_id:context.user._id}).populate('savedWorkouts');
         return user;
       }
       throw new AuthenticationError('User not authenticated');
     },
-    listWorkouts: async (_, { userId }) => {
-      const user = await User.findById(userId).populate('savedWorkouts');
-      return user.savedWorkouts;
-    },
+    // listWorkouts: async (_, { userId }) => {
+    //   const user = await User.findById(userId).populate('savedWorkouts');
+    //   return user.savedWorkouts;
+    // },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
@@ -41,13 +41,12 @@ const resolvers = {
     }
     const workout = new Workouts({
       ...input,
-      userId: context.user._id,
     });
   
     await workout.save();
 
     await User.findByIdAndUpdate(
-      context.user._id,
+      {_id:context.user._id},
       { $push: { savedWorkouts: workout._id } },
       { new: true }
     );

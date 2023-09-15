@@ -45,20 +45,18 @@ export default function Cardio({onCardioAdded}) {
     
       const token = Auth.getToken();
 
-      const userId = Auth.getUserId();
 
+      const userId = Auth.getUserId();
       if (validateForm(cardioForm)) {
         try {
-          const { data } = await createWorkout({ // Use the correct mutation function
+          const { data } = await createCardioExercise({
             variables: {
-              input: { // Use "input" as the variable name
-                type: cardioForm.type,
+              input: {
+                type: "cardio",
                 name: cardioForm.name,
                 distance: parseFloat(cardioForm.distance),
                 duration: parseFloat(cardioForm.duration),
                 date: cardioForm.date,
-                userId: userId, // Pass the userId here
-                
               },
             },
           });

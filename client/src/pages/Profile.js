@@ -15,20 +15,21 @@ export default function Profile() {
   const [cardioData, setCardioData] = useState([]);
 
   const loggedIn = Auth.loggedIn();
+  console.log(exerciseData);
+  console.log(displayedItems);
   let currentDate;
+  //get token
+  const _id = loggedIn ? Auth.getProfile().data._id : null;
 
-  // Get token
-  const token = loggedIn ? Auth.getToken() : null;
-
-  const { loading, data } = useQuery(QUERY_USER, {
-    variables: { _id: token },
+  const {loading, data} = useQuery(QUERY_USER, {
+    variables: { _id: _id }
   });
 
-  useEffect(() => {
-    if (!loading && data) {
-      const workouts = data?.getUser || { savedWorkouts: [] };
-      const cardio = workouts.savedWorkouts.filter((workout) => workout.type === 'cardio');
-      const resistance = workouts.savedWorkouts.filter((workout) => workout.type === 'resistance');
+  const workouts = data?.getUser.savedWorkouts || {cardio: null, resistance: null}
+  console.log(workouts);
+    if (workouts.cardio && workouts.resistance) {
+      const cardio = workouts.cardio;
+      const resistance = workouts.resistance;
       const exercise = cardio.concat(resistance);
 
       // Sort exercises by date
@@ -45,11 +46,12 @@ export default function Profile() {
       setExerciseData(exercise);
       setCardioData(cardio); // Update cardioData state with cardio workouts
     }
-  }, [loading, data]);
+  } [loading, data];
 
   function showMoreItems() {
     setDisplayedItems(displayedItems + 6);
   }
+    if (loading) return <h2>loading...</h2>
 
   // If the user is not logged in, redirect to the login page
   if (!loggedIn) {
@@ -60,11 +62,11 @@ export default function Profile() {
     <div className="history">
       <Header />
       <div className="d-flex flex-column align-items-center">
-        <h2 className="title">History</h2>
-        {exerciseData && exerciseData.length ? ( // Check if exerciseData exists
-          <div className="history-data">
-            {/* Map the exercise data */}
-            {exerciseData.slice(0, displayedItems).map((exercise) => {
+        <h2 className='title'>History</h2>
+        {workouts.length ?
+          (<div className='history-data'>
+            {/* map the exercise data  */}
+            {workouts.slice(0, displayedItems).map((exercise) => {
               let dateToDisplay;
               if (exercise.date !== currentDate) {
                 currentDate = exercise.date;
@@ -113,4 +115,4 @@ export default function Profile() {
       </div>
     </div>
   );
-}
+

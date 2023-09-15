@@ -18,7 +18,6 @@ const typeDefs = gql`
     sets: Int
     reps: Int
     date: String!
-    userId: ID!
   }
   input WorkoutInput {
     type: String!
@@ -36,7 +35,7 @@ const typeDefs = gql`
     user: User!
   }
   type Query {
-    getUser(_id: ID!): User
+    getUser: User
     listWorkouts: [Workout]
   }
   type Mutation {

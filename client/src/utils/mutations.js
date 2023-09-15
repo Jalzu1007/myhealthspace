@@ -35,20 +35,19 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_WORKOUT = gql`
-  mutation CreateWorkout($input: WorkoutInput!) {
-    createWorkout(input: $input) {
-      _id
-      type
-      name
-      distance
-      duration
-      weight
-      sets
-      reps
-      date
-      userId  
-     }
+mutation CreateWorkout($input: WorkoutInput!) {
+  createWorkout(input: $input) {
+    _id
+    type
+    name
+    distance
+    duration
+    weight
+    sets
+    reps
+    date
   }
+}
 `;
 
 export const UPDATE_WORKOUT = gql`
