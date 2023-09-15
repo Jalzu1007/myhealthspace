@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Header from "../components/Header";
+import backgroundImage6 from "../images/6.jpg";
 
 export default function Signup() {
   const loggedIn = Auth.loggedIn();
@@ -50,12 +51,21 @@ export default function Signup() {
     return <Navigate to="/" />;
   }
 
+  const pageStyle = {
+    backgroundImage: `url(${backgroundImage6})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    height: "100vh", // Adjust this to the desired height
+  };
+
+
   return (
+   
     <div>
-    <Header />
     <div className="signup-container d-flex flex-column align-items-center justify-content-center">
-      <Card className="signup-card">
-        <Card.Body>
+      <div className="signup-card">
+        <div >
           
           <form onSubmit={handleFormSubmit} className="signup-form d-flex flex-column">
             <label htmlFor="username">Username</label>
@@ -105,9 +115,10 @@ export default function Signup() {
             </p>
             {showAlert && <div className="err-message">Signup failed</div>}
           </form>
-        </Card.Body>
-      </Card>
+        </div>
+      </div>
     </div>
-    </div>
+ </div>
+
   );
 }

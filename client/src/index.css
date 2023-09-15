@@ -190,9 +190,11 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff; /* Set a background color for the page */
+  background-image: url("./images/6.jpg"); /* Set the path to your background image */
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+  background-repeat: no-repeat; /* Adjust as needed */
 }
-
 .signup-card {
   width: 500px; /* Set the desired width for your card */
   height: 150px;
@@ -200,6 +202,7 @@ code {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for the card */
   border-radius: 10px; /* Add rounded corners to the card */
   padding: 50px; /* Add some padding to the card */
+  background-color: #ffffff;
 }
 
 /* Style your form elements as needed */
@@ -338,6 +341,7 @@ code {
 .exercise-container {
   text-align: center;
   padding: 60px;
+  background-image: "" ;
 }
 
 
