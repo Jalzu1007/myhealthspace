@@ -4,7 +4,7 @@ import Auth from "../utils/auth";
 import Header from "../components/Header";
 import cardioImage from '../images/cardio.png';
 import resistanceImage from '../images/resistance.png';
-import backgroundImage from '../image/7.pg'
+// import backgroundImage from '../image/7.pg'
 
 
 
