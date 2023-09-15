@@ -7,7 +7,7 @@ import Auth from "../utils/auth";
 import Header from "./Header";
 import resistanceIcon from "../images/resistance.png"
 import { useMutation } from '@apollo/client';
-import { CREATE_RESISTANCE } from '../utils/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
+import { CREATE_WORKOUT } from '../utils/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
 
 export default function Resistance() {
     // Initialize state variables using useState hook
@@ -24,7 +24,7 @@ export default function Resistance() {
     const loggedIn = Auth.loggedIn();
     
     // Define the CREATE_RESISTANCE_EXERCISE mutation
-    const [createResistanceExercise] = useMutation(CREATE_RESISTANCE);
+    const [createResistanceExercise] = useMutation(CREATE_WORKOUT);
 
     const handleResistanceChange = (event) => {
         const { name, value } = event.target;

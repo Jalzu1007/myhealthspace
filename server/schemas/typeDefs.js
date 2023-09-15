@@ -16,7 +16,7 @@ const typeDefs = gql`
     weight: Float
     sets: Int
     reps: Int
-    date: Date!
+    date: String!
     userId: ID!
   }
   input WorkoutInput {
