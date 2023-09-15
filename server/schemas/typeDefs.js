@@ -29,13 +29,14 @@ const typeDefs = gql`
     sets: Int
     reps: Int
     date: String!
+    userId: ID!
   }
   type Auth {
     token: String!
     user: User!
   }
   type Query {
-    getUser(id: ID!): User
+    getUser(_id: ID!): User
     listWorkouts: [Workout]
   }
   type Mutation {

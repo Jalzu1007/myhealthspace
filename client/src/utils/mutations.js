@@ -46,23 +46,8 @@ export const CREATE_WORKOUT = gql`
       sets
       reps
       date
-      user {
-          _id
-          username
-          email
-          savedWorkouts {
-              _id
-              type
-              name
-              distance
-              duration
-              weight
-              sets
-              reps
-              date
-       }
+      userId  
      }
-    }
   }
 `;
 
@@ -78,22 +63,7 @@ export const UPDATE_WORKOUT = gql`
       sets
       reps
       date
-      user {
-          _id
-          username
-          email
-          savedWorkouts {
-              _id
-              type
-              name
-              distance
-              duration
-              weight
-              sets
-              reps
-              date
-       }
-     }
+      userId  
     }
   }
 `;
@@ -103,23 +73,3 @@ export const DELETE_WORKOUT = gql`
     deleteWorkout(id: $id)
   }
 `;
-
-// export const SAVE_WORKOUT_PROFILE= gql`
-//   mutation saveWorkout($userId: ID!, $workoutId: ID!) {
-//     saveWorkout(userId: $userId, workoutId: $workoutId) {
-//       _id
-//       username
-//       savedWorkouts {
-//         _id
-//         type
-//         name
-//         distance
-//         duration
-//         weight
-//         sets
-//         reps
-//         date
-//       }
-//     }
-//   }
-// `

@@ -9,8 +9,9 @@ import cardioIcon from '../images/resistance.png'
 import Header from "./Header";
 
 
-export default function Cardio() {
+export default function Cardio({onCardioAdded}) {
     const [cardioForm, setCardioForm] = useState({
+        type: "cardio",
         name: "",
         distance: "",
         duration: "",
@@ -21,7 +22,7 @@ export default function Cardio() {
     const loggedIn = Auth.loggedIn();
 
     // Define the CREATE_CARDIO_EXERCISE mutation
-  const [createCardioExercise] = useMutation(CREATE_WORKOUT);
+  const [createWorkout] = useMutation(CREATE_WORKOUT);
 
     const handleCardioChange = (event) => {
         const { name, value } = event.target;
@@ -34,48 +35,61 @@ export default function Cardio() {
         })
     }
     const validateForm = (form) => {
-        return form.name && form.distance && form.duration && form.date;
+        return form.type && form.name && form.distance && form.duration && form.date;
     }
     const handleCardioSubmit = async (event) => {
-        event.preventDefault();
+      event.preventDefault();
+    
+      // const token = loggedIn ? Auth.getToken() : null;
+      // if (!token) return false;
+    
+      const token = Auth.getToken();
 
-        const token = loggedIn ? Auth.getToken() : null;
-        if (!token) return false;
+      const userId = Auth.getUserId();
 
-        const userId = Auth.getUserId();
-        if (validateForm(cardioForm)) {
-           try {
-        const { data } = await createCardioExercise({
-          variables: {
-            cardioInput: {
-              name: cardioForm.name,
-              distance: parseFloat(cardioForm.distance),
-              duration: parseFloat(cardioForm.duration),
-              date: cardioForm.date,
-              userId: userId,
+      if (validateForm(cardioForm)) {
+        try {
+          const { data } = await createWorkout({ // Use the correct mutation function
+            variables: {
+              input: { // Use "input" as the variable name
+                type: cardioForm.type,
+                name: cardioForm.name,
+                distance: parseFloat(cardioForm.distance),
+                duration: parseFloat(cardioForm.duration),
+                date: cardioForm.date,
+                userId: userId, // Pass the userId here
+                
+              },
             },
-          },
-        });
+          });
+          console.log('userId:', userId);
+          console.log('token:', token);
+          
+          if (data.createWorkout) { // Check for the correct response field
+            setMessage('Cardio successfully added!');
+            setTimeout(() => {
+              setMessage('');
+            }, 3000);
 
-        if (data.createCardio) {
-          setMessage('Cardio successfully added!');
-          setTimeout(() => {
-            setMessage('');
-          }, 3000);
-        } else {
-          console.error('Cardio exercise creation failed.');
+            // Pass the cardio data to the parent component
+          onCardioAdded(data.createWorkout);
+          } else {
+            console.error('Cardio exercise creation failed.');
+          }
+        } catch (err) {
+          console.error(err);
         }
-      } catch (err) {
-        console.error(err);
       }
-    }
-        setCardioForm({
-            name: "",
-            distance: "",
-            duration: "",
-            date: ""
-        });
-    }
+    
+      setCardioForm({
+        type: "cardio",
+        name: "",
+        distance: "",
+        duration: "",
+        date: ""
+      });
+    };
+    
     if (!loggedIn) {
         return <Navigate to="/login" />;
     }
