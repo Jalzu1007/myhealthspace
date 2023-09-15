@@ -1,11 +1,12 @@
 const { gql } = require("apollo-server-express");
+
 const typeDefs = gql`
   type User {
     _id: ID!
     username: String!
     email: String
     savedWorkouts: [Workout]
-  }``
+  }
   type Workout {
     _id: ID!
     type: String!
@@ -43,5 +44,6 @@ const typeDefs = gql`
     updateWorkout(id: ID!, input: WorkoutInput!): Workout
     deleteWorkout(id: ID!): ID
   }
-`
-export default typeDefs;
+`;
+
+module.exports = typeDefs;
