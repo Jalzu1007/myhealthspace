@@ -7,53 +7,43 @@ import Header from '../components/Header';
 import cardioIcon from '../images/cardio.png';
 import resistanceIcon from '../images/resistance.png';
 import { useQuery } from '@apollo/client';
-
 export default function Profile() {
   const [userData, setUserData] = useState({});
   const [exerciseData, setExerciseData] = useState([]);
   const [displayedItems, setDisplayedItems] = useState(6);
-
   const loggedIn = Auth.loggedIn();
   console.log(exerciseData);
   console.log(displayedItems);
   let currentDate;
   //get token
   const _id = loggedIn ? Auth.getProfile().data._id : null;
-
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { _id: _id },
   });
-
     const workouts = data?.getUser.savedWorkouts || { cardio: null, resistance: null };
     console.log(workouts);
     if (workouts.cardio && workouts.resistance) {
       const cardio = workouts.cardio;
       const resistance = workouts.resistance;
       const exercise = cardio.concat(resistance);
-
       // Sort exercises by date
       exercise.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
       });
-
       // Format date in exercise data
       exercise.forEach((item) => {
         item.date = formatDate(item.date);
       });
-
       setUserData(workouts);
       setExerciseData(exercise);
     }
-
   function showMoreItems() {
     setDisplayedItems(displayedItems + 6);
   }
-
   // If the user is not logged in, redirect to the login page
   if (!loggedIn) {
     return <Navigate to="/login" />;
   }
-
   return (
     <div className="history">
       <Header />
@@ -71,7 +61,7 @@ export default function Profile() {
               return (
                 <div className="history-div d-flex" key={exercise._id}>
                   <div className="date d-flex align-items-center">{dateToDisplay}</div>
-                  <Link className='text-decoration-none' to={`/history/${exercise.type}/${exercise._id}`}>
+                  <Link className='text-decoration-none' to={`/profile/${exercise.type}/${exercise._id}`}>
                     {exercise.type === "cardio" ? (
                       <div className="history-card cardio-title d-flex">
                         <div className='d-flex align-items-center'><img alt="cardio" src={cardioIcon} className="history-icon" /></div>

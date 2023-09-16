@@ -87,26 +87,25 @@ const resolvers = {
       return updatedWorkout;
     },
     
-    deleteWorkout: async (parent, { id }, context) => {
+    deleteWorkout: async (parent, { _id }, context) => {
       if (!context.user) {
         throw new AuthenticationError('User not authenticated');
       }
 
-      const existingWorkout = await Workouts.findById(id);
+      const existingWorkout = await Workouts.findById(_id);
 
-      if (!existingWorkout || existingWorkout.userId.toString() !== context.user._id.toString()) {
-        throw new AuthenticationError('Unauthorized');
+      if (!existingWorkout) {
+        throw new AuthenticationError('Workout was not found with this ID');
       }
-
-      await Workouts.findByIdAndRemove(id);
 
       await User.findByIdAndUpdate(
         context.user._id,
-        { $pull: { savedWorkouts: id } },
+        { $pull: { savedWorkouts: _id } },
         { new: true }
       );
+      await Workouts.findByIdAndDelete(_id);
 
-      return savedWorkouts; 
+      return "Workout deleted successfully"; 
     },
 },
 };

@@ -69,6 +69,7 @@ export const UPDATE_WORKOUT = gql`
 
 export const DELETE_WORKOUT = gql`
   mutation DeleteWorkout($id: ID!) {
-    deleteWorkout(id: $id)
+    deleteWorkout(_id: $id)
+
   }
 `;

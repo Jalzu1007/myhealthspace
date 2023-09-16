@@ -7,8 +7,6 @@ import { useMutation } from '@apollo/client'; // Import useMutation
 import { CREATE_WORKOUT } from '../utils/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
 import cardioIcon from '../images/resistance.png'
 import Header from "./Header";
-
-
 export default function Cardio({onCardioAdded}) {
     const [cardioForm, setCardioForm] = useState({
         type: "cardio",
@@ -20,10 +18,8 @@ export default function Cardio({onCardioAdded}) {
     const [startDate, setStartDate] = useState(new Date());
     const [message, setMessage] = useState("")
     const loggedIn = Auth.loggedIn();
-
     // Define the CREATE_CARDIO_EXERCISE mutation
   const [createWorkout] = useMutation(CREATE_WORKOUT);
-
     const handleCardioChange = (event) => {
         const { name, value } = event.target;
         setCardioForm({ ...cardioForm, [name]: value })
@@ -39,9 +35,7 @@ export default function Cardio({onCardioAdded}) {
     }
     const handleCardioSubmit = async (event) => {
       event.preventDefault();
-    
       const token = Auth.getToken();
-      
       const userId = Auth.getUserId();
       if (validateForm(cardioForm)) {
         try {
@@ -58,13 +52,11 @@ export default function Cardio({onCardioAdded}) {
           });
           console.log('userId:', userId);
           console.log('token:', token);
-          
           if (data.createWorkout) { // Check for the correct response field
             setMessage('Cardio successfully added!');
             setTimeout(() => {
               setMessage('');
             }, 3000);
-
             // Pass the cardio data to the parent component
           onCardioAdded(data.createWorkout);
           } else {
@@ -74,7 +66,6 @@ export default function Cardio({onCardioAdded}) {
           console.error(err);
         }
       }
-    
       setCardioForm({
         type: "cardio",
         name: "",
@@ -83,11 +74,9 @@ export default function Cardio({onCardioAdded}) {
         date: ""
       });
     };
-    
     if (!loggedIn) {
         return <Navigate to="/login" />;
     }
-
     return (
         <div className='cardio'>
             <Header />
