@@ -9,9 +9,10 @@ import resistanceIcon from "../images/resistance.png"
 import { useMutation } from '@apollo/client';
 import { CREATE_WORKOUT } from '../utils/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
 
-export default function Resistance() {
+export default function Resistance({onResistanceAdded}) {
     // Initialize state variables using useState hook
     const [resistanceForm, setResistanceForm] = useState({
+        type: "resistance",
         name: "",
         weight: "",
         sets: "",
@@ -24,7 +25,7 @@ export default function Resistance() {
     const loggedIn = Auth.loggedIn();
     
     // Define the CREATE_RESISTANCE_EXERCISE mutation
-    const [createResistanceExercise] = useMutation(CREATE_WORKOUT);
+    const [createWorkout] = useMutation(CREATE_WORKOUT);
 
     const handleResistanceChange = (event) => {
         const { name, value } = event.target;
@@ -41,42 +42,44 @@ export default function Resistance() {
 
     // Function to validate the form
     const validateForm = (form) => {
-        return form.name && form.weight && form.sets && form.reps && form.date;
+        return form.type && form.name && form.weight && form.sets && form.reps && form.date;
     }
 
     // Function to handle resistance exercise submission
     const handleResistanceSubmit = async (event) => {
         event.preventDefault();
-        // Get the user's token
-        const token = loggedIn ? Auth.getToken() : null;
-        // If there's no token, return early
-        if (!token) return false;
-
+    
+        const token = Auth.getToken();
         // Get the user's ID
         const userId = Auth.getUserId();
 
         // If the form is valid, proceed
         if (validateForm(resistanceForm)) {
             try {
-                const { data } = await createResistanceExercise({
+                const { data } = await createWorkout({
                   variables: {
-                    resistanceInput: {
-                      name: resistanceForm.name,
-                      weight: parseFloat(resistanceForm.weight),
-                      sets: parseFloat(resistanceForm.sets),
-                      reps:parseFloat(resistanceForm.reps),
-                      date: resistanceForm.date,
-                      userId: userId,
+                    input: {
+                        type: "resistance",
+                        name: resistanceForm.name,
+                        weight: parseFloat(resistanceForm.weight),
+                        sets: parseFloat(resistanceForm.sets),
+                        reps:parseFloat(resistanceForm.reps),
+                        date: resistanceForm.date,
                     },
                   },
                 });
+                console.log('userId:', userId);
+                console.log('token:', token);
 
                 // Clear the message after 3 seconds
-                if (data.createResistance) {
+                if (data.createWorkout) {
                     setMessage('Resistance successfully added!');
                     setTimeout(() => {
                       setMessage('');
                     }, 3000);
+
+                    // Pass the cardio data to the parent component
+                    onResistanceAdded(data.createWorkout);
                 } else {
                     // Handle server validation errors here
                     const errorMessages = data.errors.map(error => error.message);
@@ -89,6 +92,7 @@ export default function Resistance() {
 
         // Clear the form input
         setResistanceForm({
+            type: "resistance",
             name: "",
             weight: "",
             sets: "",

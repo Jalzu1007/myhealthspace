@@ -40,12 +40,8 @@ export default function Cardio({onCardioAdded}) {
     const handleCardioSubmit = async (event) => {
       event.preventDefault();
     
-      // const token = loggedIn ? Auth.getToken() : null;
-      // if (!token) return false;
-    
       const token = Auth.getToken();
-
-
+      
       const userId = Auth.getUserId();
       if (validateForm(cardioForm)) {
         try {
