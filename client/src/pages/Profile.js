@@ -13,6 +13,7 @@ export default function Profile() {
   const [exerciseData, setExerciseData] = useState([]);
   const [displayedItems, setDisplayedItems] = useState(6);
   const [cardioData, setCardioData] = useState([]);
+  const [workouts, setWorkouts] = useState([]); // Define workouts as a state variable
 
   const loggedIn = Auth.loggedIn();
   console.log(exerciseData);
@@ -21,15 +22,18 @@ export default function Profile() {
   //get token
   const _id = loggedIn ? Auth.getProfile().data._id : null;
 
-  const {loading, data} = useQuery(QUERY_USER, {
-    variables: { _id: _id }
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { _id: _id },
   });
 
-  const workouts = data?.getUser.savedWorkouts || {cardio: null, resistance: null}
-  console.log(workouts);
-    if (workouts.cardio && workouts.resistance) {
-      const cardio = workouts.cardio;
-      const resistance = workouts.resistance;
+  useEffect(() => {
+    if (loading) return; // Add return statement here to handle loading
+
+    const userWorkouts = data?.getUser.savedWorkouts || { cardio: null, resistance: null };
+    console.log(userWorkouts);
+    if (userWorkouts.cardio && userWorkouts.resistance) {
+      const cardio = userWorkouts.cardio;
+      const resistance = userWorkouts.resistance;
       const exercise = cardio.concat(resistance);
 
       // Sort exercises by date
@@ -42,16 +46,16 @@ export default function Profile() {
         item.date = formatDate(item.date);
       });
 
-      setUserData(workouts);
+      setUserData(userWorkouts);
       setExerciseData(exercise);
       setCardioData(cardio); // Update cardioData state with cardio workouts
+      setWorkouts(exercise); // Set the workouts state variable
     }
-  } [loading, data];
+  }, [loading, data]);
 
   function showMoreItems() {
     setDisplayedItems(displayedItems + 6);
   }
-    if (loading) return <h2>loading...</h2>
 
   // If the user is not logged in, redirect to the login page
   if (!loggedIn) {
@@ -115,4 +119,4 @@ export default function Profile() {
       </div>
     </div>
   );
-
+}
