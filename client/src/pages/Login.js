@@ -27,9 +27,14 @@ export default function Login() {
 
     try {
       const { data } = await loginUserMutation({
-        variables: { ...formState },
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        },
       });
-      Auth.login(data.login.token);
+
+      const { token, user } = data.login;
+      Auth.login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);

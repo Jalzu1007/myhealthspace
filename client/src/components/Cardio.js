@@ -49,7 +49,7 @@ export default function Cardio({onCardioAdded}) {
       const userId = Auth.getUserId();
       if (validateForm(cardioForm)) {
         try {
-          const { data } = await createCardioExercise({
+          const { data } = await createWorkout({
             variables: {
               input: {
                 type: "cardio",
