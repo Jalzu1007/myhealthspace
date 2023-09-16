@@ -28,11 +28,13 @@ code {
 }
 
 .brand.brand-new {
+  font-family: 'Chau Philomene One', sans-serif;
   font-size: 40px; /* Adjust the font size as needed */
   color: #e78f5a; /* Sets the main page top left "myhealthspace" text color */
-  font-weight: bold; /* Make the text bold */
-  margin: 30px;
+  font-weight: bold; 
+
 }
+
 
 .brand {
   font-family: 'Chau Philomene One', sans-serif;
@@ -54,7 +56,7 @@ code {
 }
 
 .brand-text:hover {
-  color: black;
+  color: #e9b08d;
 }
 
 .navbar-toggler-icon {
@@ -83,13 +85,13 @@ code {
 }
 
 /* --------------------------------- 2. home page---------------------------------  */
-.homepage {
+/* .homepage {
   background-image: url("./images/main-img.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh; /* 100% of the viewport height */
-}
+  height: 100vh;
+} */
 
 .home {
   position: absolute;
@@ -111,7 +113,6 @@ code {
 }
 
 .home-btn,
-.signup-btn,
 .submit-btn {
   border: none;
   outline: none;
@@ -122,8 +123,13 @@ code {
   font-weight: 800;
 }
 
+/* sign up button */
+.btn.btn-warning {
+  background-color: #e78f5a;
+  }
+
 .home-btn:hover,
-.signup-btn:hover,
+.btn.btn-warning:hover,
 .submit-btn:hover {
   background-color:#e9b08d;
 }
@@ -134,62 +140,95 @@ code {
   height: 100vh;
 }
 
-.signup-form {
+/* .signup-form {
+  font-family: 'Roboto Slab', serif;
   width: 300px;
   margin: 20px 0 90px 0;
-}
+} */
 
-.signup-form label {
+/* .signup-form label {
   text-align: left;
   font-family: 'Roboto Slab', serif;
-}
+} */
 
-.signup-form input {
+/* .signup-form input {
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 10px;
   border-width: 1px;
-}
+} */
 
-.btn-div {
+/* .btn-div {
   margin: 18px auto;
-}
+} */
 
-.signup-btn {
+/* .signup-btn {
   width: 300px;
   height: 46px;
-}
+} */
 
+/* link if you already have an acct */
 .link-btn {
   font-family: 'Roboto Slab', serif;
+  text-align: center;
 }
 
 .err-message {
   color: red;
 }
 
+/* page background */
+body {
+  background-image: url('../src/images/main-img.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  min-height: 100vh; /* This ensures the background covers the entire viewport height */
+}
+
 .signup-container {
-  min-height: 100vh; /* Ensure the container takes up the full viewport height */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("./images/main-img.png"); /* Set the path to your background image */
-  background-size: cover; /* Adjust as needed */
-  background-position: center; /* Adjust as needed */
-  background-repeat: no-repeat; /* Adjust as needed */
-}
-.signup-card {
-  width: 500px; /* Set the desired width for your card */
-  height: 150px;
-  text-align: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for the card */
-  border-radius: 10px; /* Add rounded corners to the card */
-  padding: 50px; /* Add some padding to the card */
-  background-color: #ffffff;
+  min-height: 100vh; /* Centers card vertically on the page */
 }
 
-/* Style your form elements as needed */
-.signup-form label {
+/* Style the card */
+.card {
+  align-items: center;
+  width: auto; /* Adjust the card width as needed */
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow to the card */
+}
+
+.mb-3 {
+  font-family: 'Roboto Slab', serif;
+}
+
+/* .signup-container {
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./images/main-img.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+}
+.signup-card {
+  width: 500px;
+  height: 150px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px; 
+  padding: 50px;
+  background-color: #ffffff;
+} */
+
+/* .signup-form label {
   font-weight: bold;
 }
 
@@ -200,16 +239,16 @@ code {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-.signup-btn:disabled {
+/* .signup-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
+} */
 
-.link-btn {
+/* .link-btn {
   margin-top: 10px;
-}
+} */
 /* --------------------------------- 4. history page---------------------------------   */
 .title {
   margin: 30px auto 20px auto;
