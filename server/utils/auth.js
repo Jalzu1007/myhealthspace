@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const secret = "mysecretsdontmess";
-const expiration = null;
+const expiration = "6h"; // Set to null for tokens that don't expire
 
 module.exports = {
   // function for our authenticated routes
@@ -26,12 +26,13 @@ module.exports = {
     } catch {
       console.log('Invalid token');
     }
-   
+    
     return req;
   },
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
 
+    // Set expiresIn to null to create tokens that don't expire
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };

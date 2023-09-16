@@ -1,25 +1,17 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-// cant use <a> in react, instead, use <link> from react router dom
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useLocation } from "react-router-dom";
 
-
-
-
-
  function Header() {
-  const location = useLocation(); // Use the useLocation hook to get the location object
+  const location = useLocation(); 
   const loggedIn = Auth.loggedIn();
   const isHomePage = location.pathname === '/';
   const isLoginPage = location.pathname === '/login';
   const isSignupPage = location.pathname === '/signup';
 
-  
-  
     return (
-
         <Navbar collapseOnSelect expand="sm" variant="dark" bg={loggedIn && !isHomePage ? "dark" : null}>
           {loggedIn ? (
             <>
@@ -32,7 +24,7 @@ import { useLocation } from "react-router-dom";
                 <Nav >
                   {/* use eventKey to show navbar style from react bootstrap */}
                   <Nav.Link as={Link} to="/exercise" eventKey="1" >Exercise</Nav.Link>
-                  <Nav.Link as={Link} to="/history" eventKey="2">History</Nav.Link>
+                  <Nav.Link as={Link} to="/profile" eventKey="2">Profile</Nav.Link>
                   <Nav.Link onClick={Auth.logout} >Logout </Nav.Link>
                 </Nav>
               </Navbar.Collapse>

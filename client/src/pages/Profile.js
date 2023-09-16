@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import { QUERY_USER } from '../utils/queries';
 import Auth from '../utils/auth';
 import { formatDate } from '../utils/dateFormat';
 import Header from '../components/Header';
-import cardioImage from '../images/cardio.png';
-import resistanceImage from '../images/resistance.png';
+import cardioIcon from '../images/cardio.png';
+import resistanceIcon from '../images/resistance.png';
 import { useQuery } from '@apollo/client';
 
 export default function Profile() {
@@ -58,7 +58,7 @@ export default function Profile() {
     <div className="history">
       <Header />
       <div className="d-flex flex-column align-items-center">
-        <h2 className='title'>History</h2>
+        <h2 className='title'>Profile</h2>
         {workouts.length ?
           (<div className='history-data'>
             {/* map the exercise data  */}
@@ -71,13 +71,25 @@ export default function Profile() {
               return (
                 <div className="history-div d-flex" key={exercise._id}>
                   <div className="date d-flex align-items-center">{dateToDisplay}</div>
-                  <div className="exercise-details">
-                    <p>Type: {exercise.type}</p>
-                    <p>Name: {exercise.name}</p>
-                    {/* Add more details as needed */}
-                  </div>
+                  <Link className='text-decoration-none' to={`/history/${exercise.type}/${exercise._id}`}>
+                    {exercise.type === "cardio" ? (
+                      <div className="history-card cardio-title d-flex">
+                        <div className='d-flex align-items-center'><img alt="cardio" src={cardioIcon} className="history-icon" /></div>
+                        <div>
+                          <p className='history-name'>{exercise.name}</p>
+                          <p className='history-index'>{exercise.distance} miles </p>
+                        </div>
+                      </div>) : (
+                      <div className="history-card resistance-title d-flex">
+                        <div className='d-flex align-items-center'><img alt="resistance" src={resistanceIcon} className="history-icon" /></div>
+                        <div >
+                          <p className='history-name'>{exercise.name}</p>
+                          <p className='history-index'>{exercise.weight} pounds </p>
+                        </div>
+                      </div>)}
+                  </Link>
                 </div>
-              );
+              )
             })}
             {/* Show more items */}
             {exerciseData.length > displayedItems ? (
