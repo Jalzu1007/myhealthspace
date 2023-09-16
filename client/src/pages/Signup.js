@@ -4,7 +4,7 @@ import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Header from "../components/Header";
-import backgroundImage6 from "../images/6.jpg";
+import backgroundImage from "../images/main-img.png";
 
 export default function Signup() {
   const loggedIn = Auth.loggedIn();
@@ -52,7 +52,7 @@ export default function Signup() {
   }
 
   const pageStyle = {
-    backgroundImage: `url(${backgroundImage6})`,
+    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

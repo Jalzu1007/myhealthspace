@@ -1,59 +1,41 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
-/* Cristina Code */
-
 :root {
-  --main-color: #b3f12c;
+  --main-color: #e78f5a;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Roboto Slab', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: 'Roboto Slab', serif;
 }
 
 /* ---------------------------1. header--------------------------------- */
-.heart-icon {
+/* .heart-icon {
   height: 24px;
   margin-right: 3px;
-}
+} */
 
-/* Styling for the "FitTrack" and "myhealthspace" text in the Navbar */
+/* Styling for the "myhealthspace" text in the Navbar */
 .brand.brand-logged {
   font-size: 40px; /* Adjust the font size as needed */
-  color: #a9ccf9; /* Set the text color to white */
+  color: #e78f5a; /* Sets the text color when logged in */
   font-weight: bold; /* Make the text bold */
   
 }
 
 .brand.brand-new {
   font-size: 40px; /* Adjust the font size as needed */
-  color:#a9ccf9; /* Set the text color to white */
+  color: #e78f5a; /* Sets the main page top left "myhealthspace" text color */
   font-weight: bold; /* Make the text bold */
+  margin: 30px;
 }
 
 .brand {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Chau Philomene One', sans-serif;
   font-size: 24px;
   font-weight: 600;
 }
@@ -63,9 +45,9 @@ code {
   font-size: 20px;
 }
 
-.brand-new {
+/* .brand-new {
   margin-top: 20px;
-}
+} */
 
 .brand-text {
   color: black;
@@ -102,7 +84,7 @@ code {
 
 /* --------------------------------- 2. home page---------------------------------  */
 .homepage {
-  background-image: url("./images/2.jpg");
+  background-image: url("./images/main-img.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -111,19 +93,21 @@ code {
 
 .home {
   position: absolute;
-  bottom: 12%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   color: whitesmoke;
+  text-align: center;
 }
 
 .home-title {
   font-weight: 900;
+  font-size: 35px;
 }
 
 .home-text {
-  margin: 10px auto 15px auto;
-  font-size: 15px;
+  /* margin: 10px auto 15px auto; */
+  font-size: 20px;
 }
 
 .home-btn,
@@ -141,11 +125,11 @@ code {
 .home-btn:hover,
 .signup-btn:hover,
 .submit-btn:hover {
-  background-color: #9cd326;
+  background-color:#e9b08d;
 }
 
 /* 3. --------------------------------- sign up and login page-------------------------------- */
-/* .signup,
+.signup,
 .history {
   height: 100vh;
 }
@@ -157,7 +141,7 @@ code {
 
 .signup-form label {
   text-align: left;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 .signup-form input {
@@ -177,20 +161,19 @@ code {
 }
 
 .link-btn {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 .err-message {
   color: red;
-} */
-
+}
 
 .signup-container {
   min-height: 100vh; /* Ensure the container takes up the full viewport height */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("./images/6.jpg"); /* Set the path to your background image */
+  background-image: url("./images/main-img.png"); /* Set the path to your background image */
   background-size: cover; /* Adjust as needed */
   background-position: center; /* Adjust as needed */
   background-repeat: no-repeat; /* Adjust as needed */

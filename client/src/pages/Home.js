@@ -14,10 +14,9 @@ export default function Home() {
     
        <Header />
       {<Container className="home d-flex flex-column align-items-center justify-content-center flex-wrap text-center">
-        <h1 className="home-title">Your Daily Workout Partner</h1>
+        <h1 className="home-title">Your Daily Exercise Partner</h1>
         <p className="home-text">
-          Cardio? Resistance? Or both? Track your daily exercises and stay fit
-          with us.
+        Track, Log, and Conquer your Workouts for a Healthier You!
         </p>
         {loggedIn ?
           (<button className="home-btn" onClick={() => navigate("/exercise")}>Add Exercise</button>) :
