@@ -7,13 +7,11 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import Home from './pages/Home';
-
 import Header from './components/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
- import SingleExercise from './components/SingleExercise';
+import SingleExercise from './components/SingleExercise';
 import Profile from './pages/Profile';
 import Exercise from './pages/Exercise';
 import Error from './pages/Error';
@@ -61,7 +59,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            {/* { <Route path="/profile/:type/:id" element={<SingleExercise />} /> } */}
+            { <Route path="/profile/:type/:id" element={<SingleExercise />} /> }
             <Route path="/exercise" element={<Exercise />} />
             <Route path="/exercise/cardio" element={<Cardio />} />
             <Route path="/exercise/resistance" element={<Resistance />} />
