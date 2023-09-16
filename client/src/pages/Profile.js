@@ -12,8 +12,6 @@ export default function Profile() {
   const [userData, setUserData] = useState({});
   const [exerciseData, setExerciseData] = useState([]);
   const [displayedItems, setDisplayedItems] = useState(6);
-  const [cardioData, setCardioData] = useState([]);
-  const [workouts, setWorkouts] = useState([]); // Define workouts as a state variable
 
   const loggedIn = Auth.loggedIn();
   console.log(exerciseData);
@@ -26,14 +24,11 @@ export default function Profile() {
     variables: { _id: _id },
   });
 
-  useEffect(() => {
-    if (loading) return; // Add return statement here to handle loading
-
-    const userWorkouts = data?.getUser.savedWorkouts || { cardio: null, resistance: null };
-    console.log(userWorkouts);
-    if (userWorkouts.cardio && userWorkouts.resistance) {
-      const cardio = userWorkouts.cardio;
-      const resistance = userWorkouts.resistance;
+    const workouts = data?.getUser.savedWorkouts || { cardio: null, resistance: null };
+    console.log(workouts);
+    if (workouts.cardio && workouts.resistance) {
+      const cardio = workouts.cardio;
+      const resistance = workouts.resistance;
       const exercise = cardio.concat(resistance);
 
       // Sort exercises by date
@@ -46,12 +41,9 @@ export default function Profile() {
         item.date = formatDate(item.date);
       });
 
-      setUserData(userWorkouts);
+      setUserData(workouts);
       setExerciseData(exercise);
-      setCardioData(cardio); // Update cardioData state with cardio workouts
-      setWorkouts(exercise); // Set the workouts state variable
     }
-  }, [loading, data]);
 
   function showMoreItems() {
     setDisplayedItems(displayedItems + 6);
