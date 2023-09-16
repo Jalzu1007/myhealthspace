@@ -59,46 +59,53 @@ export default function SingleExercise() {
         return <Navigate to="/login" />;
      }
 
-     const handleDeleteWorkout = async (_id) => {
-        const token = loggedIn ? Auth.getToken().data._id : null;
-       
-        // if (!token) return false;
-
-         confirmAlert({
-             title: "Delete Exercise",
-            message: "Are you sure you want to delete this exercise?",
-            buttons: [
-                {
-                     label: "Cancel",
-                 },
-                {
-                    label: "Delete",
-                     onClick: async () => {
-                         // delete cardio data
-                        if (type === "cardio") {
-                            try {
-                                 const response = await deleteWorkout(_id, token);
-                                if (!response.ok) { throw new Error('something went wrong!') }
-                            }
-                             catch (err) { console.error(err) }
-                         }
-
-                         // delete resistance data
-                         else if (type === "resistance") {
-                            try {
-                                 const response = await deleteWorkout(_id, token);
-                                 if (!response.ok) { throw new Error('something went wrong!') }
-                             }
-                            catch (err) { console.error(err) }
-                        }
-
-                        // go back to history
-                         navigate("/profile")
-                    }
+    const handleDeleteWorkout = async () => {
+        const token = loggedIn ? Auth.getToken() : null;
+      
+        if (!token) {
+          // Handle the case where the user is not logged in
+          return;
+        }
+      
+        confirmAlert({
+          title: "Delete Exercise",
+          message: "Are you sure you want to delete this exercise?",
+          buttons: [
+            {
+              label: "Cancel",
+            },
+            {
+              label: "Delete",
+              onClick: async () => {
+                try {
+                  // Execute the DELETE_WORKOUT mutation with the workout ID
+                  const { data } = await deleteWorkout({
+                    variables: { id },
+                  });
+      
+                  // Check the response to see if the workout was successfully deleted
+                  if (data.deleteWorkout) {
+                    // Handle success, e.g., update the UI or navigate back to the history
+                    console.log('Workout deleted successfully');
+                    navigate("/profile");
+                  } else {
+                    // Handle failure, e.g., show an error message
+                    console.error('Failed to delete workout');
+                  }
+                } catch (error) {
+                  // Handle any errors that occur during the mutation
+                  console.error('Error deleting workout', error);
                 }
-             ]
-        });  
-    }
+              },
+            },
+          ],
+        });
+      };
+
+
+
+
+
      return (
         <div className={type === "cardio" ? "single-cardio" : "single-resistance"}>
             <Header />
