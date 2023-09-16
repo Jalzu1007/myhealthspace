@@ -51,55 +51,62 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <Header/>
-    <div className="signup-container d-flex flex-column align-items-center justify-content-center">
-      <Card className="signup-card">
-        <Card.Body>
-          
-          <form onSubmit={handleFormSubmit} className="signup-form d-flex flex-column">
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+    <div className="signup-container">
+      <div className="card custom-card"> {/* Apply custom card class */}
+        <div className="card-body">
+          <Header />
+          <p className="card-text">Welcome! Please log in to continue.</p>
+        </div>
+
+        <form onSubmit={handleFormSubmit} className="signup-form d-flex flex-column">
+          {/* Email */}
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
             <input
-              className="form-input"
-              value={formState.email}
+              type="email"
+              className="form-control"
+              id="email"
               placeholder="youremail@gmail.com"
               name="email"
-              type="email"
+              value={formState.email}
               onChange={handleChange}
             />
-            </div>
-            
-            <div className="form-group">
-            <label htmlFor="password">Password</label>
+          </div>
+
+          {/* Password */}
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
             <input
-              className="form-input"
-              value={formState.password}
+              type="password"
+              className="form-control"
+              id="password"
               placeholder="********"
               name="password"
-              type="password"
+              value={formState.password}
               onChange={handleChange}
             />
-            </div>
+          </div>
 
-            <div className="btn-div">
-              <button
-                disabled={!(formState.email && formState.password)}
-                className="signup-btn mx-auto my-auto"
-              >
-                Login
-              </button>
-            </div>
+          {/* Sign in button */}
+          <div className="mb-3 d-grid gap-2 col-6 mx-auto">
+            <button
+              type="submit"
+              disabled={!(formState.email && formState.password)}
+              className="btn btn-warning"
+            >
+              Login
+            </button>
+          </div>
 
-            <p className="link-btn">
-              New to myhealthspace?{' '}
-              <Link to="/signup">Create one</Link>
-            </p>
-            {showAlert && <div className="err-message">Login failed</div>}
-          </form>
-        </Card.Body>
-      </Card>
-    </div>
+          {/* Sign up link */}
+          <p className="link-btn">
+            New to myhealthspace?{' '}
+            <Link to="/signup">Create one</Link>
+          </p>
+
+          {showAlert && <div className="err-message">Login failed</div>}
+        </form>
+      </div>
     </div>
   );
 }

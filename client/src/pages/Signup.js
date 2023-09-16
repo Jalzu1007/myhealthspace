@@ -4,7 +4,8 @@ import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
 import Header from "../components/Header";
-import backgroundImage from "../images/main-img.png";
+
+// import backgroundImage from "../images/main-img.png";
 
 export default function Signup() {
   const loggedIn = Auth.loggedIn();
@@ -51,74 +52,89 @@ export default function Signup() {
     return <Navigate to="/" />;
   }
 
-  const pageStyle = {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    height: "100vh", // Adjust this to the desired height
-  };
+  // const pageStyle = {
+  //   backgroundImage: `url(${backgroundImage})`,
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat",
+  //   height: "100vh", // Adjust this to the desired height
+  // };
 
 
   return (
-   
-    <div>
-    <div className="signup-container d-flex flex-column align-items-center justify-content-center">
-      <div className="signup-card">
-        <div >
-          
-          <form onSubmit={handleFormSubmit} className="signup-form d-flex flex-column">
-            <label htmlFor="username">Username</label>
-            <input
-              className="form-input"
-              value={formState.username}
-              placeholder="Your username"
-              name="username"
-              type="text"
-              onChange={handleChange}
-            />
-
-            <label htmlFor="email">Email</label>
-            <input
-              className="form-input"
-              value={formState.email}
-              placeholder="youremail@gmail.com"
-              name="email"
-              type="email"
-              onChange={handleChange}
-            />
-
-            <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              className="form-input"
-              value={formState.password}
-              placeholder="********"
-              name="password"
-              type="password"
-              onChange={handleChange}
-            />
-            </div>
-
-            <div className="btn-div">
-              <button
-                disabled={!(formState.username && formState.email && formState.password)}
-                className="signup-btn mx-auto my-auto"
-              >
-                Sign Up
-              </button>
-            </div>
-
-            <p className="link-btn">
-              Already have an account?{' '}
-              <Link to="/login">Log in</Link>
-            </p>
-            {showAlert && <div className="err-message">Signup failed</div>}
-          </form>
-        </div>
+    <div className="signup-container">
+      <div className="card">
+    
+      <div className="card-body">
+        <Header/>
+          {/* <h5 className="card-title">myhealthspace</h5> */}
+          <p className="card-text">Welcome! Please sign up to get started.</p>
       </div>
-    </div>
- </div>
+    
+    <form onSubmit={handleFormSubmit} className="signup-form d-flex flex-column">
+      {/* --------------------username-------------------- */}
+      <div className="mb-3">
+        <label htmlFor="username" className="form-label">Username</label>
+        <input
+          type="text"
+          className="form-control"
+          id="username"
+          placeholder="Your username"
+          name="username"
+          value={formState.username}
+          onChange={handleChange}
+        />
+      </div>
 
+      {/* --------------------email-------------------- */}
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">Email</label>
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          placeholder="email@example.com"
+          name="email"
+          value={formState.email}
+          onChange={handleChange}
+        />
+      </div>
+
+      {/* -------------------- password-------------------- */}
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          placeholder="********"
+          name="password"
+          value={formState.password}
+          onChange={handleChange}
+        />
+      </div>
+
+      {/* --------------------sign up btn-------------------- */}
+      <div className="mb-3 d-grid gap-2 col-6 mx-auto">
+        <button
+          type="submit"
+          disabled={!(formState.username && formState.email && formState.password)}
+          className="btn btn-warning"
+        >
+          Sign Up
+        </button>
+      </div>
+
+      {/* --------------------login link-------------------- */}
+      <p className="link-btn">
+        Already have an account?{' '}
+        <Link to="/login">Log in</Link>
+      </p>
+
+      {showAlert && <div className="err-message">Signup failed</div>}
+    </form>
+
+    </div>
+    </div>
   );
 }
