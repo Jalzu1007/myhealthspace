@@ -135,10 +135,10 @@ code {
 }
 
 /* 3. --------------------------------- sign up and login page-------------------------------- */
-.signup,
+/* .signup,
 .history {
   height: 100vh;
-}
+} */
 
 /* .signup-form {
   font-family: 'Roboto Slab', serif;
@@ -253,20 +253,12 @@ body {
 .title {
   margin: 30px auto 20px auto;
   font-weight: 900;
-}
-
-.title:after {
-  content: ""; /* This is necessary for the pseudo element to work. */
-  display: block; /* This will put the pseudo element on its own line. */
-  margin: 0 auto; /* This will center the border. */
-  width: 35px; /* length of border */
-  padding-top: 3px; /* This creates some space between the element and the border. */
-  border-bottom: 2px solid; /* This creates the border. Replace black with whatever color you want. */
+  color: whitesmoke;
 }
 
 .history-text {
   margin: 20px auto;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 .history-data {
@@ -307,6 +299,7 @@ body {
 .history-name {
   font-weight: bold;
   margin: 0 auto;
+  font-size: large;
 }
 
 .history-index {
@@ -328,7 +321,7 @@ body {
 /* --------------------------------- 5.exercise page---------------------------------   */
 .cardio-title,
 .cardio-btn {
-  background-color: var(--main-color);
+  background-color: #fcf7c5;
   color: black;
   /*josh code to center the buttons*/
   font-size: 36px; /* Increase font size for cardio and resistance elements */
@@ -341,7 +334,7 @@ body {
 
 .resistance-title,
 .resistance-btn {
-  background-color: lightskyblue;
+  background-color: #e78f5a;
   color: black;
   /*josh code to center the buttons*/
   font-size: 36px; /* Increase font size for cardio and resistance elements */
@@ -368,7 +361,7 @@ body {
 
 
 .exercise-icon {
-  height: 40px;
+  height: 60px;
 }
 
 .cardio-btn,
@@ -419,13 +412,16 @@ body {
 }
 
 .cardio-form,
+.exercise-card,
 .resistance-form,
+.profile-card,
 .cardio-div,
 .resistance-div {
-  /* background-color: rgba(255, 255, 255, 0.2); */
+  background-color: rgba(255, 255, 255, 0.74);
   border-radius: 10px;
   padding: 20px;
-  width: 290px;
+  width: auto;
+  height: auto;
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(30px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
@@ -433,7 +429,7 @@ body {
 
 .cardio-form label,
 .resistance-form label {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Roboto Slab', serif;
   font-weight: 600;
   color: var(--main-color);
 }
@@ -444,7 +440,7 @@ body {
   border: none;
   background: transparent;
   border-bottom: 1px solid white;
-  color: white;
+  color: black;
   width: 100%;
 }
 
@@ -455,7 +451,7 @@ body {
 
 .message {
   font-weight: bold;
-  color: yellow;
+  color: rgb(153, 255, 0);
   margin-top: 20px;
   text-align: center;
 }
