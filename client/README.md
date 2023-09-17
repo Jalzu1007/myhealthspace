@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# My Health Space
+A MERN-stack fitness tracker app.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+myhealthspace is a user-friendly web application, designed with fitness enthusiasts in mind, making it easy to track your fitness journey. In this MERN stack application we've combined the power of React, GraphQL, Node.js, Express.js, and MongoDB to create a simple and responsive platform. myhealthspace offers functionalities such as logging and tracking both cardio and resistance workouts, viewing workout history in your profile, and the ability to edit and delete exercises. Our goal is to provide fitness enthusiasts with an all-inclusive solution that makes logging your progress a breeze while ensuring your data is secure with JWT-based authentication.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Description](#description)
+- [Technology](#Technology)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contribution](#contribution)
+- [Questions](#questions)
 
-### `npm start`
+## Installation
+To run this MERN application locally, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository to your local machine: `git clone https://github.com/andreaber23/myhealthspace.git
+2. Navigate to the project directory using the terminal.
+3. Run `npm install` to install the required dependencies.
+4. Start the client and the server: `npm run develop` 
+6. Open your web browser and navigate to the provided local URL.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
+Sign Up or Log In:
 
-### `npm test`
+If you're a new user, sign up for an account using your email and password. If you're an existing user, log in with your credentials.
+Profle:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once logged in, you'll be directed to your personalized profile.
 
-### `npm run build`
+Adding a Workout:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To start tracking your fitness progress, click on the "Add Workout" button.
+Fill in the workout details, including exercise type, duration, sets, reps, and any additional notes.
+Click "Cardio or Resistance" to record your workout.
+Viewing Workouts:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Your saved workouts will be displayed in an organized list on your profile.
+You can easily review your past workouts to track your progress.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Updating a Workout:
+To make changes to a workout, click on the workout you wish to update.
+Edit the workout details as needed and click "Update" to save your changes.
 
-### `npm run eject`
+Deleting a Workout:
+If you want to remove a workout from your records, click on the workout, and then click "Delete."
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Monitoring Your Progress:
+Use the app to keep a record of your fitness journey and monitor your improvements over time.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Log Out:
+When you're done, log out of your account to keep your data secure.
+Feel free to customize and expand upon this usage guide to provide more specific instructions or features unique to your fitness tracking application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
+This project is licensed under MIT, for more information please visit [this website](https://opensource.org/licenses/MIT)
 
-## Learn More
+## Contribution
+Open to collaboration, if you choose to do so open an issue and modify any changes you would like to see on a feature branch and wait for approval before merging to the main branch.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Questions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Have additional questions? Click the links below to us reach us through GitHub or Email.
+https://github.com/Jalzu1007
+https://github.com/andreaber23
+https://github.com/CIJoshTC
+https://github.com/calzu0821
+https://github.com/jimen8930
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
