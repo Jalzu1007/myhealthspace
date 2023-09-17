@@ -53,18 +53,18 @@ const resolvers = {
     return workout;
   },
 
-    updateWorkout: async (parent, { id, input }, context) => {
+    updateWorkout: async (parent, { _id, input }, context) => {
       if (!context.user) {
         throw new AuthenticationError('User not authenticated');
       }
     
-      const existingWorkout = await Workouts.findById(id);
+      const existingWorkout = await Workouts.findById(_id);
     
       if (!existingWorkout || existingWorkout.userId.toString() !== context.user._id.toString()) {
         throw new AuthenticationError('Unauthorized');
       }
     
-      const updatedWorkout = await Workouts.findByIdAndUpdate(id, input, { new: true });
+      const updatedWorkout = await Workouts.findByIdAndUpdate(_id, input, { new: true });
     
       const user = await User.findById(context.user._id);
     

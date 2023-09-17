@@ -52,9 +52,8 @@ mutation CreateWorkout($input: WorkoutInput!) {
 
 export const UPDATE_WORKOUT = gql`
   mutation UpdateWorkout($id: ID!, $input: WorkoutInput!) {
-    updateWorkout(id: $id, input: $input) {
+    updateWorkout(_id: $id, input: $input) {
       _id
-      type
       name
       distance
       duration
@@ -62,7 +61,6 @@ export const UPDATE_WORKOUT = gql`
       sets
       reps
       date
-      userId  
     }
   }
 `;

@@ -8,7 +8,7 @@ import { formatDate } from '../utils/dateFormat';
 import Header from "./Header";
 import cardioIcon from "../images/cardio.png"
 import resistanceIcon from "../images/resistance.png"
-import { DELETE_WORKOUT} from '../utils/mutations'; // Import the DELETE_EXERCISE mutation
+import { DELETE_WORKOUT} from '../utils/mutations';
 import { UPDATE_WORKOUT } from '../utils/mutations';
 import Cardio from '../components/Cardio';
 import Resistance from '../components/Resistance';
@@ -19,11 +19,68 @@ export default function SingleExercise() {
     const [cardioData, setCardioData] = useState({})
     const [resistanceData, setResistanceData] = useState({})
     const { loading, error, data } =useQuery(QUERY_USER);
+    const [isUpdateFormVisible, setUpdateFormVisible] = useState(false);
+    const [updatedWorkoutData, setUpdatedWorkoutData] = useState({});
+
+    useEffect(() => {
+      if (type === 'cardio') {
+        
+        setUpdatedWorkoutData({
+          name: cardioData.name, 
+          date: cardioData.date,
+          duration: cardioData.duration, 
+        });
+      } else if (type === 'resistance') {
+       
+        setUpdatedWorkoutData({
+          name: resistanceData.name, 
+          date: resistanceData.date,
+          weight: resistanceData.weight,
+          sets: resistanceData.sets, 
+          reps: resistanceData.reps, 
+        });
+      }
+    }, [type, cardioData, resistanceData]);
 
     const loggedIn = Auth.loggedIn();
     const navigate = useNavigate()
 
-      // Define the DELETE_EXERCISE mutation
+    // UPDATE
+    const toggleUpdateForm = () => {
+      setUpdateFormVisible(!isUpdateFormVisible);
+    };
+    
+    const handleUpdateSubmit = async (e) => {
+      e.preventDefault();
+    
+      const updatedWorkoutDataWithFloats = {
+        ...updatedWorkoutData,
+        distance: parseFloat(updatedWorkoutData.distance),
+        duration: parseFloat(updatedWorkoutData.duration),
+      };
+
+      try {
+        const { data } = await updateWorkout({
+          variables: {
+            id,
+            input: updatedWorkoutDataWithFloats,
+            type: type,
+          },
+        });
+    
+        if (data.updateWorkout) {
+       
+          console.log('Workout updated successfully');
+          navigate(`/exercise/${id}/${type}`);
+        } else {
+          console.error('Failed to update workout');
+        }
+      } catch (error) {
+        console.error('Error updating workout', error);
+      }
+    };
+
+    // Define the DELETE_EXERCISE mutation
     const [deleteWorkout] = useMutation(DELETE_WORKOUT);
     const [updateWorkout] = useMutation(UPDATE_WORKOUT);
 
@@ -71,8 +128,6 @@ export default function SingleExercise() {
         }
       };
     }, [data, id]);
-
-
 
     // useEffect(() => {
     //      const displayExercise = async (_id) => {
@@ -152,12 +207,6 @@ export default function SingleExercise() {
                     },
                   });
       
-
-
-
-
-
-
                   // Check the response to see if the workout was successfully deleted
                   if (data.deleteWorkout) {
                     // Handle success, e.g., update the UI or navigate back to the history
@@ -177,57 +226,154 @@ export default function SingleExercise() {
         });
       };
 
-const handleUpdateWorkout = async (id, updatedData) => {
-  try {
-    const { data } = await updateWorkout({
-      variables: { id, input: updatedData },
-    });
+// const handleUpdateWorkout = async (id, updatedData) => {
+//   try {
+//     const { data } = await updateWorkout({
+//       variables: { id, input: updatedData },
+//     });
 
-    // Check the response to see if the workout was successfully updated
-    if (data.updateWorkout) {
-      // Handle success, e.g., update the UI or display a success message
-      console.log('Workout updated successfully');
-      // You may want to refresh the data after updating.
-      // You can call the displayExercise function or refetch your data here.
-    } else {
-      // Handle failure, e.g., show an error message
-      console.error('Failed to update workout');
-    }
-  } catch (error) {
-    // Handle any errors that occur during the mutation
-    console.error('Error updating workout', error);
-  }
+//     // Check the response to see if the workout was successfully updated
+//     if (data.updateWorkout) {
+//       // Handle success, e.g., update the UI or display a success message
+//       console.log('Workout updated successfully');
+//       // You may want to refresh the data after updating.
+//       // You can call the displayExercise function or refetch your data here.
+//     } else {
+//       // Handle failure, e.g., show an error message
+//       console.error('Failed to update workout');
+//     }
+//   } catch (error) {
+//     // Handle any errors that occur during the mutation
+//     console.error('Error updating workout', error);
+//   }
+//};
+
+return (
+  <div className={type === "cardio" ? "single-cardio" : "single-resistance"}>
+    <Header />
+    <h2 className='title text-center'>History</h2>
+    <div className="single-exercise d-flex flex-column align-items-center text-center">
+      {isUpdateFormVisible ? (
+        <form onSubmit={handleUpdateSubmit}>
+          {/* Common input fields */}
+          <input
+            type="text"
+            placeholder="Updated Name"
+            value={updatedWorkoutData.name}
+            onChange={(e) =>
+              setUpdatedWorkoutData({
+                ...updatedWorkoutData,
+                name: e.target.value,
+              })
+            }
+          />
+          <input
+            type="date"
+            placeholder="Updated Date"
+            value={updatedWorkoutData.date}
+            onChange={(e) =>
+              setUpdatedWorkoutData({
+                ...updatedWorkoutData,
+                date: e.target.value,
+              })
+            }
+          />
+          {/* Conditionally render cardio-specific fields */}
+          {type === "cardio" && (
+            <>
+              <input
+                type="number"
+                placeholder="Updated Distance (miles)"
+                value={updatedWorkoutData.distance}
+                onChange={(e) =>
+                  setUpdatedWorkoutData({
+                    ...updatedWorkoutData,
+                    distance: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="number"
+                placeholder="Updated Duration (minutes)"
+                value={updatedWorkoutData.duration}
+                onChange={(e) =>
+                  setUpdatedWorkoutData({
+                    ...updatedWorkoutData,
+                    duration: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
+          {/* Conditionally render resistance-specific fields */}
+          {type === "resistance" && (
+            <>
+              <input
+                type="number"
+                placeholder="Updated Weight (lbs)"
+                value={updatedWorkoutData.weight}
+                onChange={(e) =>
+                  setUpdatedWorkoutData({
+                    ...updatedWorkoutData,
+                    weight: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="number"
+                placeholder="Updated Sets"
+                value={updatedWorkoutData.sets}
+                onChange={(e) =>
+                  setUpdatedWorkoutData({
+                    ...updatedWorkoutData,
+                    sets: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="number"
+                placeholder="Updated Reps"
+                value={updatedWorkoutData.reps}
+                onChange={(e) =>
+                  setUpdatedWorkoutData({
+                    ...updatedWorkoutData,
+                    reps: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
+          <button type="submit">Update Workout</button>
+        </form>
+      ) : (
+        // Display workout data when isUpdateFormVisible is false
+        <>
+          {type === "cardio" && (
+            <div className='cardio-div'>
+              <div className='d-flex justify-content-center'><img alt="cardio" src={cardioIcon} className="exercise-form-icon" /></div>
+              <p><span>Date: </span> {cardioData.date}</p>
+              <p><span>Name: </span> {cardioData.name}</p>
+              <p><span>Distance: </span> {cardioData.distance} miles</p>
+              <p><span>Duration: </span> {cardioData.duration} minutes</p>
+              <button className='delete-btn' onClick={() => handleDeleteWorkout(id)}>Delete Exercise</button>
+              <button className='update-btn' onClick={toggleUpdateForm}>Update Workout</button>
+            </div>
+          )}
+          {type === "resistance" && (
+            <div className='resistance-div'>
+              <div className='d-flex justify-content-center'><img alt="resistance" src={resistanceIcon} className="exercise-form-icon" /></div>
+              <p><span>Date: </span> {resistanceData.date}</p>
+              <p><span>Name: </span> {resistanceData.name}</p>
+              <p><span>Weight: </span> {resistanceData.weight} lbs</p>
+              <p><span>Sets: </span> {resistanceData.sets}</p>
+              <p><span>Reps: </span> {resistanceData.reps}</p>
+              <button className='delete-btn' onClick={() => handleDeleteWorkout(id)}>Delete Workout</button>
+              <button className='update-btn' onClick={toggleUpdateForm}>Update Workout</button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  </div>
+);
 };
-
-     return (
-        <div className={type === "cardio" ? "single-cardio" : "single-resistance"}>
-            <Header />
-            <h2 className='title text-center'>History</h2>
-             <div className="single-exercise d-flex flex-column align-items-center text-center">
-                 {type === "cardio" && (<div className='cardio-div '>
-                     <div className='d-flex justify-content-center'><img alt="cardio" src={cardioIcon} className="exercise-form-icon" /></div>
-                    
-                     <p><span>Date: </span> {cardioData.date}</p>
-                    <p><span>Name: </span> {cardioData.name}</p>
-                     <p><span>Distance: </span> {cardioData.distance} miles</p>
-                    <p><span>Duration: </span> {cardioData.duration} minutes</p>
-                    <button className='delete-btn' onClick={() => handleDeleteWorkout(id)}>Delete Exercise</button>
-                    <button className='update-btn' onClick={() => handleUpdateWorkout(id, updateWorkout)}>Update Workout</button>
-
-                </div>)}
-                 {type === "resistance" && (<div className='resistance-div'>
-                     <div className='d-flex justify-content-center'><img alt="resistance" src={resistanceIcon} className="exercise-form-icon" /></div>
-                    <p><span>Date: </span> {resistanceData.date}</p>
-                    <p><span>Name: </span> {resistanceData.name}</p>
-                     <p><span>Weight: </span> {resistanceData.weight} lbs</p>
-                     <p><span>Sets: </span> {resistanceData.sets}</p>
-                     <p><span>Reps: </span> {resistanceData.reps}</p>
-                     <button className='delete-btn' onClick={() => handleDeleteWorkout(id)}>Delete Workout</button>
-                     <button className='update-btn' onClick={() => handleUpdateWorkout(id, updateWorkout)}>Update Workout</button>
-
-                 </div>)}
-             </div>
-         </div>
-
-     )
- }
