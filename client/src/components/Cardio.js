@@ -3,10 +3,12 @@ import { Navigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
-import { useMutation } from '@apollo/client'; // Import useMutation
-import { CREATE_WORKOUT } from '../utils/mutations'; // Import the CREATE_CARDIO_EXERCISE mutation
+import { useMutation } from '@apollo/client'; 
+import { CREATE_WORKOUT } from '../utils/mutations';
 import cardioIcon from '../images/resistance.png'
 import Header from "./Header";
+import { QUERY_USER } from '../utils/queries'; 
+
 export default function Cardio({onCardioAdded}) {
     const [cardioForm, setCardioForm] = useState({
         type: "cardio",
@@ -19,7 +21,8 @@ export default function Cardio({onCardioAdded}) {
     const [message, setMessage] = useState("")
     const loggedIn = Auth.loggedIn();
     // Define the CREATE_CARDIO_EXERCISE mutation
-  const [createWorkout] = useMutation(CREATE_WORKOUT);
+  const [createWorkout] = useMutation(CREATE_WORKOUT, {refetchQueries: [{ query: QUERY_USER }]});
+  
     const handleCardioChange = (event) => {
         const { name, value } = event.target;
         setCardioForm({ ...cardioForm, [name]: value })
