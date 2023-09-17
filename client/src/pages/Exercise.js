@@ -5,8 +5,7 @@ import Header from "../components/Header";
 import cardioImage from '../images/cardio.png';
 import resistanceImage from '../images/resistance.png';
 // import backgroundImage from '../image/7.pg'
-
-
+import { Card } from 'react-bootstrap';
 
 
 
@@ -21,23 +20,26 @@ export default function Exercise() {
   }
 
   return (
-    // <div className="exercise-page" style={{ backgroundImage: `url(${backgroundImage})` }}>
     <div>
       <Header />
-      <div className="exercise-container">
-        <h2 className='title'>Add Exercise</h2>
-        <div>
-          <button className='cardio-btn' onClick={() => navigate("/exercise/cardio")}>
-            <img alt="cardio" src={cardioImage} className="exercise-icon" />
-            Cardio
-          </button>
-        </div>
-        <div>
-          <button className='resistance-btn' onClick={() => navigate("/exercise/resistance")}>
-            <img alt="resistance" src={resistanceImage} className="exercise-icon" />
-            Resistance
-          </button>
-        </div>
+      <h2 className='title text-center'>Add Exercise</h2>
+      <div className="d-flex justify-content-center align-items-center" style={{ height: 'auto' }}>
+        <Card className="exercise-card">
+          <Card.Body>
+            <div>
+              <button className='cardio-btn' onClick={() => navigate("/exercise/cardio")}>
+                <img alt="cardio" src={cardioImage} className="exercise-icon" />
+                Cardio
+              </button>
+            </div>
+            <div>
+              <button className='resistance-btn' onClick={() => navigate("/exercise/resistance")}>
+                <img alt="resistance" src={resistanceImage} className="exercise-icon" />
+                Resistance
+              </button>
+            </div>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );

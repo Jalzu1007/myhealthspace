@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
   const isSignupPage = location.pathname === '/signup';
 
     return (
-        <Navbar collapseOnSelect expand="sm" variant="dark" bg={loggedIn && !isHomePage ? "dark" : null}>
+        <Navbar collapseOnSelect expand="sm">
           {loggedIn ? (
             <>
               <Navbar.Brand as={Link} to="/" className="brand brand-logged d-flex align-items-center">
