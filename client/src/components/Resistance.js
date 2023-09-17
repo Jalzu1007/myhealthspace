@@ -3,13 +3,13 @@ import { Navigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
-// import { createResistance } from '../utils/API';
 import Header from "./Header";
 import resistanceIcon from "../images/resistance.png"
 import { useMutation } from '@apollo/client';
-import { CREATE_WORKOUT } from '../utils/mutations'; // Import the CREATE_RESISTANCE_EXERCISE mutation
+import { CREATE_WORKOUT } from '../utils/mutations'; 
+import { QUERY_USER } from '../utils/queries'; 
+
 export default function Resistance({onResistanceAdded}) {
-    // Initialize state variables using useState hook
     const [resistanceForm, setResistanceForm] = useState({
         type: "resistance",
         name: "",
@@ -23,7 +23,8 @@ export default function Resistance({onResistanceAdded}) {
     // Check if the user is logged in using Auth.loggedIn()
     const loggedIn = Auth.loggedIn();
     // Define the CREATE_RESISTANCE_EXERCISE mutation
-    const [createWorkout] = useMutation(CREATE_WORKOUT);
+    const [createWorkout] = useMutation(CREATE_WORKOUT, {refetchQueries: [{ query: QUERY_USER }]});
+
     const handleResistanceChange = (event) => {
         const { name, value } = event.target;
         setResistanceForm({ ...resistanceForm, [name]: value })
