@@ -135,8 +135,29 @@ export default function SingleExercise() {
                   // Execute the DELETE_WORKOUT mutation with the workout ID
                   const { data } = await deleteWorkout({
                     variables: { id },
+                    update: (cache) => {
+                      const { getUser } = cache.readQuery({ query: QUERY_USER });
+                      const updatedWorkouts = getUser.savedWorkouts.filter(
+                        (workout) => workout._id !== id
+                      );
+                      cache.writeQuery({
+                        query: QUERY_USER,
+                        data: {
+                          getUser: {
+                            ...getUser,
+                            savedWorkouts: updatedWorkouts,
+                          },
+                        },
+                      });
+                    },
                   });
       
+
+
+
+
+
+
                   // Check the response to see if the workout was successfully deleted
                   if (data.deleteWorkout) {
                     // Handle success, e.g., update the UI or navigate back to the history
