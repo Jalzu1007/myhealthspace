@@ -53,36 +53,10 @@ const resolvers = {
     return workout;
   },
 
-    updateWorkout: async (parent, { _id, input }, context) => {
-      if (!context.user) {
-        throw new AuthenticationError('User not authenticated');
-      }
-    
-      const existingWorkout = await Workouts.findById(_id);
-    
-      if (!existingWorkout || existingWorkout.userId.toString() !== context.user._id.toString()) {
-        throw new AuthenticationError('Unauthorized');
-      }
+    updateWorkout: async (parent, { _id, input, type }, context) => {
     
       const updatedWorkout = await Workouts.findByIdAndUpdate(_id, input, { new: true });
-    
-      const user = await User.findById(context.user._id);
-    
-      const savedWorkouts = user.savedWorkouts.map((savedWorkout) => {
-        if (savedWorkout._id.toString() === id) {
-          if (input.name) savedWorkout.name = input.name;
-          if (input.weight) savedWorkout.weight = input.weight;
-          if (input.sets) savedWorkout.sets = input.sets;
-          if (input.reps) savedWorkout.reps = input.reps;
-          if (input.date) savedWorkout.date = input.date;
-        }
-        return savedWorkout;
-      });
-    
-      user.savedWorkouts = savedWorkouts;
-    
-      // Save the updated user document
-      await user.save();
+
     
       return updatedWorkout;
     },

@@ -21,6 +21,7 @@ export default function SingleExercise() {
     const { loading, error, data } =useQuery(QUERY_USER);
     const [isUpdateFormVisible, setUpdateFormVisible] = useState(false);
     const [updatedWorkoutData, setUpdatedWorkoutData] = useState({});
+    const [updateWorkout] = useMutation(UPDATE_WORKOUT);
 
     useEffect(() => {
       if (type === 'cardio') {
@@ -28,6 +29,7 @@ export default function SingleExercise() {
         setUpdatedWorkoutData({
           name: cardioData.name, 
           date: cardioData.date,
+          distance: cardioData.distance,
           duration: cardioData.duration, 
         });
       } else if (type === 'resistance') {
@@ -57,6 +59,7 @@ export default function SingleExercise() {
         ...updatedWorkoutData,
         distance: parseFloat(updatedWorkoutData.distance),
         duration: parseFloat(updatedWorkoutData.duration),
+        type: type || '',
       };
 
       try {
@@ -64,14 +67,16 @@ export default function SingleExercise() {
           variables: {
             id,
             input: updatedWorkoutDataWithFloats,
-            type: type,
+            type,
           },
         });
-    
+        console.log('Type:', type);
+        console.log('Mutation data:', data);
+
         if (data.updateWorkout) {
        
           console.log('Workout updated successfully');
-          navigate(`/exercise/${id}/${type}`);
+          navigate(`/profile`);
         } else {
           console.error('Failed to update workout');
         }
@@ -82,7 +87,7 @@ export default function SingleExercise() {
 
     // Define the DELETE_EXERCISE mutation
     const [deleteWorkout] = useMutation(DELETE_WORKOUT);
-    const [updateWorkout] = useMutation(UPDATE_WORKOUT);
+    
 
     useEffect(() => {
       if (data && data.getUser) {
@@ -93,7 +98,7 @@ export default function SingleExercise() {
         if (savedCardioWorkout) {
           const cardio = {
             _id: savedCardioWorkout._id,
-            type: savedCardioWorkout.type,
+            type: "cardio",
             name: savedCardioWorkout.name,
             distance: savedCardioWorkout.distance,
             duration: savedCardioWorkout.duration,
@@ -115,7 +120,7 @@ export default function SingleExercise() {
         if (savedResistanceWorkout) {
           const resistance = {
             _id: savedResistanceWorkout._id,
-            type: savedResistanceWorkout.type,
+            type: "resistance",
             name: savedResistanceWorkout.name,
             weight: savedResistanceWorkout.weight,
             sets: savedResistanceWorkout.sets,
@@ -255,7 +260,6 @@ return (
     <div className="single-exercise d-flex flex-column align-items-center text-center">
       {isUpdateFormVisible ? (
         <form onSubmit={handleUpdateSubmit}>
-          {/* Common input fields */}
           <input
             type="text"
             placeholder="Updated Name"
@@ -278,7 +282,6 @@ return (
               })
             }
           />
-          {/* Conditionally render cardio-specific fields */}
           {type === "cardio" && (
             <>
               <input
@@ -305,7 +308,6 @@ return (
               />
             </>
           )}
-          {/* Conditionally render resistance-specific fields */}
           {type === "resistance" && (
             <>
               <input
@@ -346,7 +348,6 @@ return (
           <button type="submit">Update Workout</button>
         </form>
       ) : (
-        // Display workout data when isUpdateFormVisible is false
         <>
           {type === "cardio" && (
             <div className='cardio-div'>
