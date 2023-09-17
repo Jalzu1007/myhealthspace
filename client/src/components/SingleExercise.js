@@ -34,7 +34,6 @@ export default function SingleExercise() {
         );
   
         if (savedCardioWorkout) {
-          // Process and set cardioData based on savedCardioWorkout
           const cardio = {
             _id: savedCardioWorkout._id,
             type: savedCardioWorkout.type,
@@ -47,8 +46,33 @@ export default function SingleExercise() {
   
           setCardioData(cardio);
         }
-      }
+      };
     }, [data, id]);
+
+    useEffect(() => {
+      if (data && data.getUser) {
+        const savedResistanceWorkout = data.getUser.savedWorkouts.find(
+          (workout) => workout._id === id && workout.type === 'resistance'
+        );
+  
+        if (savedResistanceWorkout) {
+          const resistance = {
+            _id: savedResistanceWorkout._id,
+            type: savedResistanceWorkout.type,
+            name: savedResistanceWorkout.name,
+            weight: savedResistanceWorkout.weight,
+            sets: savedResistanceWorkout.sets,
+            reps: savedResistanceWorkout.reps,
+            date: savedResistanceWorkout.date,
+          };
+          resistance.date = formatDate(resistance.date);
+  
+          setResistanceData(resistance);
+        }
+      };
+    }, [data, id]);
+
+
 
     // useEffect(() => {
     //      const displayExercise = async (_id) => {
