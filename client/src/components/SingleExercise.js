@@ -59,6 +59,9 @@ export default function SingleExercise() {
         ...updatedWorkoutData,
         distance: parseFloat(updatedWorkoutData.distance),
         duration: parseFloat(updatedWorkoutData.duration),
+        sets: parseInt(updatedWorkoutData.sets),
+        reps: parseInt(updatedWorkoutData.reps),
+        weight: parseFloat(updatedWorkoutData.weight),
         type: type || '',
       };
 
