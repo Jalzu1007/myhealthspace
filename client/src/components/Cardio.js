@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client'; 
 import { CREATE_WORKOUT } from '../utils/mutations';
-import cardioIcon from '../images/resistance.png'
+import cardioIcon from '../images/cardio.png';
 import Header from "./Header";
 import { QUERY_USER } from '../utils/queries'; 
 
@@ -99,8 +99,8 @@ export default function Cardio({onCardioAdded}) {
                     <label>Date:</label>
                     <DatePicker selected={startDate} value={cardioForm.date} onChange={handleDateChange} placeholderText="mm/dd/yyyy" />
                     <button className='submit-btn cardio-submit-btn' type="submit" disabled={!validateForm(cardioForm)} >Add</button>
+                    <p className='message'>{message}</p>
                 </form>
-                <p className='message'>{message}</p>
             </div>
         </div>
     )

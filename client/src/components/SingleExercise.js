@@ -13,6 +13,7 @@ import { UPDATE_WORKOUT } from '../utils/mutations';
 import Cardio from '../components/Cardio';
 import Resistance from '../components/Resistance';
 import { QUERY_USER } from '../utils/queries';
+import { Card } from 'react-bootstrap';
 
 export default function SingleExercise() {
     const { id, type } = useParams();
@@ -262,18 +263,8 @@ return (
     <h2 className='title text-center'>History</h2>
     <div className="single-exercise d-flex flex-column align-items-center text-center">
       {isUpdateFormVisible ? (
-        <form onSubmit={handleUpdateSubmit}>
-          <input
-            type="text"
-            placeholder="Updated Name"
-            value={updatedWorkoutData.name}
-            onChange={(e) =>
-              setUpdatedWorkoutData({
-                ...updatedWorkoutData,
-                name: e.target.value,
-              })
-            }
-          />
+        <form class="update-form" onSubmit={handleUpdateSubmit}>
+          <label>Date:</label>
           <input
             type="date"
             placeholder="Updated Date"
@@ -285,8 +276,21 @@ return (
               })
             }
           />
+          <label >Name:</label>
+          <input
+            type="text"
+            placeholder="Updated Name"
+            value={updatedWorkoutData.name}
+            onChange={(e) =>
+              setUpdatedWorkoutData({
+                ...updatedWorkoutData,
+                name: e.target.value,
+              })
+            }
+          />
           {type === "cardio" && (
             <>
+            <label >Distance (miles):</label>
               <input
                 type="number"
                 placeholder="Updated Distance (miles)"
@@ -298,6 +302,7 @@ return (
                   })
                 }
               />
+              <label >Duration (minutes):</label>
               <input
                 type="number"
                 placeholder="Updated Duration (minutes)"
@@ -313,6 +318,7 @@ return (
           )}
           {type === "resistance" && (
             <>
+            <label>Weight (lbs):</label>
               <input
                 type="number"
                 placeholder="Updated Weight (lbs)"
@@ -324,6 +330,7 @@ return (
                   })
                 }
               />
+               <label>Sets:</label>
               <input
                 type="number"
                 placeholder="Updated Sets"
@@ -335,6 +342,7 @@ return (
                   })
                 }
               />
+              <label>Reps:</label>
               <input
                 type="number"
                 placeholder="Updated Reps"
@@ -348,8 +356,9 @@ return (
               />
             </>
           )}
-          <button type="submit">Update Workout</button>
+          <button className="update-btn" type="submit">Update Workout</button>
         </form>
+        //
       ) : (
         <>
           {type === "cardio" && (
@@ -371,8 +380,8 @@ return (
               <p><span>Weight: </span> {resistanceData.weight} lbs</p>
               <p><span>Sets: </span> {resistanceData.sets}</p>
               <p><span>Reps: </span> {resistanceData.reps}</p>
-              <button className='delete-btn' onClick={() => handleDeleteWorkout(id)}>Delete Workout</button>
               <button className='update-btn' onClick={toggleUpdateForm}>Update Workout</button>
+              <button className='delete-btn' onClick={() => handleDeleteWorkout(id)}>Delete Workout</button>
             </div>
           )}
         </>

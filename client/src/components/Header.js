@@ -3,14 +3,12 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useLocation } from "react-router-dom";
-
  function Header() {
-  const location = useLocation(); 
+  const location = useLocation();
   const loggedIn = Auth.loggedIn();
   const isHomePage = location.pathname === '/';
   const isLoginPage = location.pathname === '/login';
   const isSignupPage = location.pathname === '/signup';
-
     return (
         <Navbar collapseOnSelect expand="sm">
           {loggedIn ? (
@@ -37,5 +35,4 @@ import { useLocation } from "react-router-dom";
         </Navbar >
       );
     }
-
     export default Header

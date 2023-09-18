@@ -416,7 +416,8 @@ body {
 .resistance-form,
 .profile-card,
 .cardio-div,
-.resistance-div {
+.resistance-div,
+.update-form {
   background-color: rgba(255, 255, 255, 0.74);
   border-radius: 10px;
   padding: 20px;
@@ -428,14 +429,16 @@ body {
 }
 
 .cardio-form label,
-.resistance-form label {
+.resistance-form label,
+.update-form label {
   font-family: 'Roboto Slab', serif;
   font-weight: 600;
   color: var(--main-color);
 }
 
 .cardio-form input,
-.resistance-form input {
+.resistance-form input,
+.update-form input {
   margin-bottom: 10px;
   border: none;
   background: transparent;
@@ -451,20 +454,39 @@ body {
 
 .message {
   font-weight: bold;
-  color: rgb(153, 255, 0);
+  color: darkolivegreen;
   margin-top: 20px;
   text-align: center;
+  font-size: large;
 }
 
 /* ---------------------------------7.single exercise page--------------------------------- */
 .cardio-div,
-.resistance-div {
+.resistance-div,
+.update-form {
   width: 280px;
+  color: black;
 }
+
 
 .single-exercise span {
   color: var(--main-color);
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: 'Roboto Slab', serif;
+}
+
+.update-btn {
+  border: none;
+  border-radius: 6px;
+  background-color: #697680;
+  color: whitesmoke;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 10px auto;
+}
+
+.update-btn:hover {
+  background-color: gray;
 }
 
 .delete-btn {

@@ -5,7 +5,7 @@ export default function Error() {
   return (
     <div >
       <Header />
-      <div className="d-flex align-items-center justify-content-center mt-5">
+      <div className="d-flex align-items-center justify-content-center mt-5 text-white">
         <h3>Oops, we couldn't find that page.</h3>
       </div>
     </div>
