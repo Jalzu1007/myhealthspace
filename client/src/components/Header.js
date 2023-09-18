@@ -10,14 +10,14 @@ import { useLocation } from "react-router-dom";
   const isLoginPage = location.pathname === '/login';
   const isSignupPage = location.pathname === '/signup';
     return (
-        <Navbar collapseOnSelect expand="sm">
+        <Navbar collapseOnSelect expand="sm" >
           {loggedIn ? (
             <>
               <Navbar.Brand as={Link} to="/" className="brand brand-logged d-flex align-items-center">
                 {/* <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" /> */}
                 myhealthspace
               </Navbar.Brand>
-              <Navbar aria-controls="responsive-navbar-nav"/>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
               <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                 <Nav >
                   {/* use eventKey to show navbar style from react bootstrap */}
