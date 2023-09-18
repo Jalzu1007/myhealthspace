@@ -37,3 +37,11 @@ export const QUERY_WORKOUTS = gql`
     }
   }
 `;
+
+// export const QUERY_CHECKOUT = gql`
+//   query getCheckout($amount: Int) {
+//     checkout(amount: $amount) {
+//       session
+//     }
+//   }
+// `;

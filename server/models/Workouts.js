@@ -1,5 +1,12 @@
 const { Schema, model } = require("mongoose");
 
+const dayjs = require('dayjs')
+var utc = require('dayjs/plugin/utc')
+var timezone = require('dayjs/plugin/timezone')
+dayjs.extend(utc)
+dayjs.extend(timezone)
+const tz = "America/New York"
+
 const workoutSchema = new Schema(
   {
     type: {
@@ -45,6 +52,12 @@ const workoutSchema = new Schema(
     date: {
       type: Date,
       required: true,
+      get: (ts) => dayjs.tz(ts, "UTC").format('MM/DD/YYYY', tz)
+    },
+  },
+  {
+    toJSON: {
+      getters: true
     },
   }
 );

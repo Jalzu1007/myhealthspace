@@ -12,7 +12,7 @@ import { Card } from 'react-bootstrap';
 export default function Profile() {
   const [userData, setUserData] = useState({});
   const [exerciseData, setExerciseData] = useState([]);
-  const [displayedItems, setDisplayedItems] = useState(6);
+  const [displayedItems, setDisplayedItems] = useState(100);
   const loggedIn = Auth.loggedIn();
   console.log(exerciseData);
   console.log(displayedItems);
@@ -62,6 +62,7 @@ export default function Profile() {
               {workouts.length ?
                 (<div className='history-data'>
                   {/* map the exercise data  */}
+                  {/* FUTURE DEVELOPMENT: pagination (previous/next button) */}
                   {workouts.slice(0, displayedItems).map((exercise) => {
                     let dateToDisplay;
                     if (exercise.date !== currentDate) {
