@@ -18,7 +18,8 @@ import Error from './pages/Error';
 import Cardio from './components/Cardio';
 import Resistance from './components/Resistance';
 import InstallBanner from './components/InstallBanner'; // Import the InstallBanner component
-
+import Donate from './pages/Donate'
+import Confirmation from './pages/Confirmation'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -63,6 +64,8 @@ function App() {
             <Route path="/exercise" element={<Exercise />} />
             <Route path="/exercise/cardio" element={<Cardio />} />
             <Route path="/exercise/resistance" element={<Resistance />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path='/confirmation' component={<Confirmation />}/>
             <Route path="*" element={<Error />} />
             </Routes>
           </div>
