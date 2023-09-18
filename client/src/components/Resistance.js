@@ -94,12 +94,13 @@ export default function Resistance({onResistanceAdded}) {
     if (!loggedIn) {
         return <Navigate to="/login" />;
     }
+
     // Render the Resistance component
     return (
-        <div className='resistance'> {/* Outer container */}
-            <Header /> {/* Render the Header component */}
-            <div className="d-flex flex-column align-items-center"> {/* Container for the main content */}
-                <h2 className='title text-center'>Add Exercise</h2> {/* Title */}
+        <div className='resistance'> 
+            <Header /> 
+            <div className="d-flex flex-column align-items-center"> 
+                <h2 className='title text-center'>Add Exercise</h2> 
                 <form className='resistance-form d-flex flex-column' onSubmit={handleResistanceSubmit}>
                     {/* Form for adding resistance exercise */}
                     <div className='d-flex justify-content-center'>
@@ -156,12 +157,3 @@ export default function Resistance({onResistanceAdded}) {
         </div>
     )
 }
-
-
-
-
-
-
-
-
-

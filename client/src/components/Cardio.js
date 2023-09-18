@@ -20,6 +20,7 @@ export default function Cardio({onCardioAdded}) {
     const [startDate, setStartDate] = useState(new Date());
     const [message, setMessage] = useState("")
     const loggedIn = Auth.loggedIn();
+
     // Define the CREATE_CARDIO_EXERCISE mutation
   const [createWorkout] = useMutation(CREATE_WORKOUT, {refetchQueries: [{ query: QUERY_USER }]});
   
@@ -55,7 +56,7 @@ export default function Cardio({onCardioAdded}) {
           });
           console.log('userId:', userId);
           console.log('token:', token);
-          if (data.createWorkout) { // Check for the correct response field
+          if (data.createWorkout) { 
             setMessage('Cardio successfully added!');
             setTimeout(() => {
               setMessage('');
@@ -80,6 +81,7 @@ export default function Cardio({onCardioAdded}) {
     if (!loggedIn) {
         return <Navigate to="/login" />;
     }
+
     return (
         <div className='cardio'>
             <Header />

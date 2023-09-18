@@ -7,12 +7,9 @@ import resistanceImage from '../images/resistance.png';
 // import backgroundImage from '../image/7.pg'
 import { Card } from 'react-bootstrap';
 
-
-
 export default function Exercise() {
   const loggedIn = Auth.loggedIn();
   const navigate = useNavigate()
-
 
   // If the user is not logged in, redirect to the login page
   if (!loggedIn) {
@@ -44,25 +41,3 @@ export default function Exercise() {
     </div>
   );
 }
-
-//   return (
-//     <div>
-//       <Header />
-//       <div className="exercise d-flex flex-column align-items-center">
-//         <h2 className='title'>Add Exercise</h2>
-//         <div>
-//           <button className='cardio-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/cardio")}>
-//             <img alt="cardio" src={cardioImage} className="exercise-icon" />
-//             Cardio
-//           </button>
-//         </div>
-//         <div>
-//           <button className='resistance-btn d-flex flex-column  align-items-center justify-content-center' onClick={() => navigate("/exercise/resistance")}>
-//             <img alt="resistance" src={resistanceImage} className="exercise-icon" />
-//             Resistance
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }

@@ -17,18 +17,16 @@ code {
 
 /* Styling for the "myhealthspace" text in the Navbar */
 .brand.brand-logged {
-  font-size: 40px; /* Adjust the font size as needed */
+  font-size: 40px; 
   color: #e78f5a; /* Sets the text color when logged in */
-  font-weight: bold; /* Make the text bold */
-  
+  font-weight: bold; 
 }
 
 .brand.brand-new {
   font-family: 'Chau Philomene One', sans-serif;
-  font-size: 40px; /* Adjust the font size as needed */
+  font-size: 40px;
   color: #e78f5a; /* Sets the main page top left "myhealthspace" text color */
   font-weight: bold; 
-
 }
 
 .brand {
@@ -50,25 +48,24 @@ code {
   color: #e9b08d;
 }
 
-.navbar-toggler-icon {
+/* .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='whitesmoke' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
+} */
 
 .nav-link {
   text-align: center;
   margin-right: 1%;
-  margin-left: 5px; /* Add margin to the left side */
+  margin-left: 5px; 
   font-weight: 500;
   color: #ffffff;
-  font-size: 25px; /* Adjust the font size as needed */
-  text-decoration: none; /* Remove underlines from links */
-  outline: none; /* Remove the focus outline (the dash) */  
- 
+  font-size: 25px;
+  text-decoration: none; 
+  outline: none; 
 }
 
 .navbar-brand {
-  text-decoration: none; /* Remove underlines from links */
-  outline: none; /* Remove the focus outline (the dash) */
+  text-decoration: none; 
+  outline: none; 
 }
 
 .nav-link:hover {
@@ -76,6 +73,7 @@ code {
 }
 
 /* --------------------------------- 2. home page---------------------------------  */
+
 .home {
   position: absolute;
   top: 50%;
@@ -139,11 +137,12 @@ body {
   min-height: 100vh; /* This ensures the background covers the entire viewport height */
 }
 
+/* Centers card vertically on the page */
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Centers card vertically on the page */
+  min-height: 100vh; 
 }
 
 /* Style the card */
@@ -160,7 +159,8 @@ body {
   font-family: 'Roboto Slab', serif;
 }
 
-/* --------------------------------- 4. history page---------------------------------   */
+/* --------------------------------- 4. Profile/History page---------------------------------   */
+
 .title {
   margin: 30px auto 20px auto;
   font-weight: 900;
@@ -228,38 +228,35 @@ body {
 }
 
 /* --------------------------------- 5.exercise page---------------------------------   */
+
 .cardio-title,
 .cardio-btn {
   background-color: #fcf7c5;
   color: black;
-  /*josh code to center the buttons*/
-  font-size: 36px; /* Increase font size for cardio and resistance elements */
-  padding: 10px 20px; /* Increase padding for cardio and resistance elements */
-  border-radius: 10px; /* Increase border-radius for cardio and resistance elements */
-  margin: 10px auto; /* Center elements horizontally by setting margin to 'auto' */
-  display: block; /* Ensure each element is on its own line */
-  text-align: center; /* Center the text within each element */
+  font-size: 36px; 
+  padding: 10px 20px; 
+  border-radius: 10px; 
+  margin: 10px auto; 
+  display: block;
+  text-align: center;
 }
 
 .resistance-title,
 .resistance-btn {
   background-color: #e78f5a;
   color: black;
-  /*josh code to center the buttons*/
-  font-size: 36px; /* Increase font size for cardio and resistance elements */
-  padding: 10px 20px; /* Increase padding for cardio and resistance elements */
-  border-radius: 10px; /* Increase border-radius for cardio and resistance elements */
-  margin: 10px auto; /* Center elements horizontally by setting margin to 'auto' */
-  display: block; /* Ensure each element is on its own line */
-  text-align: center; /* Center the text within each element */
+  font-size: 36px; 
+  padding: 10px 20px; 
+  border-radius: 10px; 
+  margin: 10px auto; 
+  display: block; 
+  text-align: center; 
 }
-/* Josh code Exercise page + container classes*/
 
 .exercise-page {
   background-size: cover; 
   background-repeat: no-repeat;
-  background-attachment: fixed;
- 
+  background-attachment: fixed; 
 }
 
 .exercise-container {
@@ -292,6 +289,7 @@ body {
 }
 
 /* ------------------------------- 6. cardio and resistance page--------------------------------*/
+
 .exercise-form-icon {
   height: 50px;
   width: 50px;
@@ -300,7 +298,6 @@ body {
 
 .cardio,
 .single-cardio {
-  /* background-image: url("./assets/images/running.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -310,7 +307,6 @@ body {
 
 .resistance,
 .single-resistance {
-  /* background-image: url("./assets/images/dumbell.jpeg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -368,6 +364,7 @@ body {
 }
 
 /* ---------------------------------7.single exercise page--------------------------------- */
+
 .cardio-div,
 .resistance-div,
 .update-form {

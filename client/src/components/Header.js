@@ -3,12 +3,14 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useLocation } from "react-router-dom";
+
  function Header() {
   const location = useLocation();
   const loggedIn = Auth.loggedIn();
   const isHomePage = location.pathname === '/';
   const isLoginPage = location.pathname === '/login';
   const isSignupPage = location.pathname === '/signup';
+
     return (
         <Navbar collapseOnSelect expand="sm" >
           {loggedIn ? (
@@ -29,7 +31,6 @@ import { useLocation } from "react-router-dom";
             </>) :
             (<Navbar.Brand as={Link} to="/" className={`brand brand-new mx-auto d-flex align-items-center
               ${isLoginPage || isSignupPage ? "brand-text" : null}`}>
-              {/* <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" /> */}
               myhealthspace
             </Navbar.Brand>
             )}
@@ -37,4 +38,5 @@ import { useLocation } from "react-router-dom";
         </Navbar >
       );
     }
-    export default Header
+
+export default Header

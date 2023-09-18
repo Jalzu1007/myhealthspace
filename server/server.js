@@ -4,8 +4,6 @@ const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
-const stripe = require('stripe')(process.env.STRIPE_API_KEY);
-require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -28,37 +26,6 @@ if (process.env.NODE_ENV === 'production') {
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
-// //Stripe Donation service
-// app.post('/create-checkout-session', async (req, res) => {
-//   try {
-//     const { amount } = req.body; 
-    
-// const session = await stripe.checkout.sessions.create({
-//   payment_method_types: ['card'],
-//   line_items: [
-//     {
-//       price_data: {
-//         currency: 'usd', 
-//         product_data: {
-//           name: 'Donation', 
-//         },
-//         unit_amount: amount, 
-//       },
-//       quantity: 1,
-//     },
-//   ],
-//   mode: 'payment',
-//   success_url: 'http://localhost:3000/profile',
-//   cancel_url: 'http://localhost:3000/profile', 
-// });
-
-// res.status(200).json({ sessionId: session.id });
-// } catch (error) {
-// console.error('Error creating Stripe session:', error);
-// res.status(500).json({ error: 'Unable to create Stripe session' });
-// }
-// });
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

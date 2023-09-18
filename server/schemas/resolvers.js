@@ -11,10 +11,6 @@ const resolvers = {
       }
       throw new AuthenticationError('User not authenticated');
     },
-    // listWorkouts: async (_, { userId }) => {
-    //   const user = await User.findById(userId).populate('savedWorkouts');
-    //   return user.savedWorkouts;
-    // },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
@@ -56,8 +52,6 @@ const resolvers = {
     updateWorkout: async (parent, { _id, input, type }, context) => {
     
       const updatedWorkout = await Workouts.findByIdAndUpdate(_id, input, { new: true });
-
-    
       return updatedWorkout;
     },
     
@@ -78,10 +72,9 @@ const resolvers = {
         { new: true }
       );
       await Workouts.findByIdAndDelete(_id);
-
       return "Workout deleted successfully"; 
     },
-},
+  },
 };
 
 module.exports = resolvers;
