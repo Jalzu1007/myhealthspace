@@ -31,7 +31,9 @@ import { useLocation } from "react-router-dom";
               ${isLoginPage || isSignupPage ? "brand-text" : null}`}>
               {/* <img alt="heart" style={{ display: "inline" }} src={heart} className="heart-icon" /> */}
               myhealthspace
-            </Navbar.Brand>)}
+            </Navbar.Brand>
+            )}
+            <Nav.Link as={Link} to="/donate" eventKey="3" >Donate</Nav.Link>
         </Navbar >
       );
     }
