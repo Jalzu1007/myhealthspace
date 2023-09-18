@@ -150,8 +150,8 @@ export default function Resistance({onResistanceAdded}) {
                         placeholderText="mm/dd/yyyy"
                     />
                     <button className='submit-btn' type="submit" disabled={!validateForm(resistanceForm)}>Add</button> {/* Submit button */}
+                    <p className='message'>{message}</p> {/* Display a success/error message */}
                 </form>
-                <p className='message'>{message}</p> {/* Display a success/error message */}
             </div>
         </div>
     )
