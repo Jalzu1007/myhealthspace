@@ -1,5 +1,6 @@
 # myhealthspace
-A MERN-stack fitness tracker app.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 myhealthspace is a user-friendly web application, designed with fitness enthusiasts in mind, making it easy to track your fitness journey. In this MERN stack application we've combined the power of React, GraphQL, Node.js, Express.js, and MongoDB to create a simple and responsive platform. myhealthspace offers functionalities such as logging and tracking both cardio and resistance workouts, viewing workout history in your profile, and the ability to edit and delete exercises. Our goal is to provide fitness enthusiasts with an all-inclusive solution that makes logging your progress a breeze while ensuring your data is secure with JWT-based authentication.
@@ -57,8 +58,7 @@ Feel free to customize and expand upon this usage guide to provide more specific
 
 ## License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
-This project is licensed under MIT, for more information please visit [this website](https://opensource.org/licenses/MIT)
+This project is licensed under MIT, for more information please visit: [MIT](https://opensource.org/licenses/MIT)
 
 ## Contribution
 Open to collaboration, if you choose to do so open an issue and modify any changes you would like to see on a feature branch and wait for approval before merging to the main branch.

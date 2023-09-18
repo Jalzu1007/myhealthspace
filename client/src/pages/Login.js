@@ -4,6 +4,7 @@ import Auth from "../utils/auth";
 import Header from "../components/Header";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+import { Card } from 'react-bootstrap';
 
 export default function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
