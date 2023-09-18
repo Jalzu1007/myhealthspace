@@ -14,10 +14,6 @@ code {
 }
 
 /* ---------------------------1. header--------------------------------- */
-/* .heart-icon {
-  height: 24px;
-  margin-right: 3px;
-} */
 
 /* Styling for the "myhealthspace" text in the Navbar */
 .brand.brand-logged {
@@ -35,7 +31,6 @@ code {
 
 }
 
-
 .brand {
   font-family: 'Chau Philomene One', sans-serif;
   font-size: 24px;
@@ -46,10 +41,6 @@ code {
   margin-left: 5px;
   font-size: 20px;
 }
-
-/* .brand-new {
-  margin-top: 20px;
-} */
 
 .brand-text {
   color: black;
@@ -85,14 +76,6 @@ code {
 }
 
 /* --------------------------------- 2. home page---------------------------------  */
-/* .homepage {
-  background-image: url("./images/main-img.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-} */
-
 .home {
   position: absolute;
   top: 50%;
@@ -135,37 +118,6 @@ code {
 }
 
 /* 3. --------------------------------- sign up and login page-------------------------------- */
-/* .signup,
-.history {
-  height: 100vh;
-} */
-
-/* .signup-form {
-  font-family: 'Roboto Slab', serif;
-  width: 300px;
-  margin: 20px 0 90px 0;
-} */
-
-/* .signup-form label {
-  text-align: left;
-  font-family: 'Roboto Slab', serif;
-} */
-
-/* .signup-form input {
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 10px;
-  border-width: 1px;
-} */
-
-/* .btn-div {
-  margin: 18px auto;
-} */
-
-/* .signup-btn {
-  width: 300px;
-  height: 46px;
-} */
 
 /* link if you already have an acct */
 .link-btn {
@@ -208,47 +160,6 @@ body {
   font-family: 'Roboto Slab', serif;
 }
 
-/* .signup-container {
-  min-height: 100vh; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("./images/main-img.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-}
-.signup-card {
-  width: 500px;
-  height: 150px;
-  text-align: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px; 
-  padding: 50px;
-  background-color: #ffffff;
-} */
-
-/* .signup-form label {
-  font-weight: bold;
-}
-
-.signup-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-} */
-
-/* .signup-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-} */
-
-/* .link-btn {
-  margin-top: 10px;
-} */
 /* --------------------------------- 4. history page---------------------------------   */
 .title {
   margin: 30px auto 20px auto;
@@ -293,8 +204,6 @@ body {
   height: 35px;
   margin-right: 14px;
 }
-
-
 
 .history-name {
   font-weight: bold;
@@ -359,7 +268,6 @@ body {
   background-image: "" ;
 }
 
-
 .exercise-icon {
   height: 60px;
 }
@@ -382,7 +290,6 @@ body {
 .resistance-btn:hover {
   box-shadow: 0 0 10px 0 whitesmoke inset, 0 0 10px 4px whitesmoke;
 }
-
 
 /* ------------------------------- 6. cardio and resistance page--------------------------------*/
 .exercise-form-icon {
@@ -467,7 +374,6 @@ body {
   width: 280px;
   color: black;
 }
-
 
 .single-exercise span {
   color: var(--main-color);
