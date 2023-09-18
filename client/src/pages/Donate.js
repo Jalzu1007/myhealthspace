@@ -1,12 +1,13 @@
 import React,{useState} from 'react';
 import StripeCheckout from "react-stripe-checkout";
+import Header from "../components/Header"
 
-const checkoutpage={
-   width:'100%',
-  height:'100%',
-   position:'absolute',
-   display:'inline-block'
-  } 
+// const checkoutpage={
+//    width:'100%',
+//   height:'100%',
+//    position:'absolute',
+//    display:'inline-block'
+//   } 
   
  function Donate() {
     
@@ -60,21 +61,34 @@ const checkoutpage={
     
 
 <>
-<div style={checkoutpage}>
-<label>Enter amount to donate</label>
-<input onChange={numberHandle} style={reginput} type="number" placeholder="Enter Number" value={number} />
+<Header />
+<h2 className='title text-center'>Donate</h2>
+<div className="donate-container">
+  <div className="donate-form d-flex flex-column align-items-center justify-content-center">
+    <label>Enter amount to donate</label>
+    <div className="input-group mb-3 mt-3">
+      <span className="input-group-text">$</span>
+      <input
+        type="text"
+        className="form-control"
+        aria-label="Amount (to the nearest dollar)"
+        onChange={numberHandle}
+        value={number}
+        placeholder="Enter Number"
+      />
+    </div>
     <StripeCheckout
-    stripeKey= "pk_test_TYooMQauvdEDq54NiTphI7jx"
-    token={makePayment}
-    name="Donate"
-    amount={number * 100}>
-
-   <button  className='btn-large '>
-      Donate {number} $
-    </button>
-    
-  </StripeCheckout>
+      stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+      token={makePayment}
+      name="Donate"
+      amount={number * 100}
+    >
+      <button className='donate-btn btn-large'>
+        Donate
+      </button>
+    </StripeCheckout>
   </div>
+</div>
   </>
   );
   };
