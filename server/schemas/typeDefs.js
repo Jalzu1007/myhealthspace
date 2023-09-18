@@ -29,6 +29,11 @@ const typeDefs = gql`
     reps: Int
     date: String!
   }
+
+  # type Checkout {
+  #   session: ID
+  # }
+
   type Auth {
     token: String!
     user: User!
@@ -36,6 +41,7 @@ const typeDefs = gql`
   type Query {
     getUser: User
     listWorkouts: [Workout]
+    # checkout(amount: Int): Checkout
   }
   type Mutation {
     login(email: String!, password: String!): Auth

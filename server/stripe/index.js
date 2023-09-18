@@ -8,7 +8,6 @@ const app = express();
 
 //middleware
 app.use(express.json());
-app.use(cors());
 
 //routes
 app.get("/", (req, res) => {
@@ -22,8 +21,8 @@ app.post("/checkout", (req, res) => {
   const idempontencyKey = uuidv4();
 
  stripe.checkout.sessions.create({
-    success_url: 'http://localhost:3000/success',
-    cancel_url: 'https://localhost:3000/cancel',
+    success_url: 'http://localhost:3000/confirmation',
+    cancel_url: 'https://localhost:3000/',
     payment_method_types: ['card'],
     mode:'payment',
   
@@ -51,4 +50,4 @@ app.post("/checkout", (req, res) => {
     
 });
 
-app.listen(8282, () => console.log("LISTENING AT PORT 8282"));
+app.listen(3002, () => console.log("LISTENING AT PORT 3002"));

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const secret = "mysecretsdontmess";
-const expiration = "6h"; 
+// const expiration = "0h"; 
 
 module.exports = {
   // function for our authenticated routes
@@ -18,7 +18,7 @@ module.exports = {
     }
     // verify token and get user data out of it
     try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      const { data } = jwt.verify(token, secret, { maxAge: 0 });
       console.log("DATA", data);
       req.user = data;
     } catch {

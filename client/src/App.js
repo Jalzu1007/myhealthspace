@@ -8,7 +8,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Header from './components/Header';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import SingleExercise from './components/SingleExercise';
@@ -17,7 +16,6 @@ import Exercise from './pages/Exercise';
 import Error from './pages/Error';
 import Cardio from './components/Cardio';
 import Resistance from './components/Resistance';
-import InstallBanner from './components/InstallBanner'; // Import the InstallBanner component
 import Donate from './pages/Donate'
 import Confirmation from './pages/Confirmation'
 
@@ -52,7 +50,6 @@ function App() {
         
         <div className="flex-column justify-flex-start min-100-vh">
            {/* Other components */}
-           <InstallBanner /> {/* Displayed globally */}
           {/* { <Header /> } */}
           <div className="container">
             <Routes> 
@@ -69,9 +66,7 @@ function App() {
             <Route path="*" element={<Error />} />
             </Routes>
           </div>
-         
         </div>
-
       </Router>
     </ApolloProvider>
   );
