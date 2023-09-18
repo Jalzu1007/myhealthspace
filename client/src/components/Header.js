@@ -23,6 +23,7 @@ import { useLocation } from "react-router-dom";
               <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                 <Nav >
                   {/* use eventKey to show navbar style from react bootstrap */}
+                  <Nav.Link as={Link} to="/donate" eventKey="3" >Donate</Nav.Link>
                   <Nav.Link as={Link} to="/exercise" eventKey="1" >Exercise</Nav.Link>
                   <Nav.Link as={Link} to="/profile" eventKey="2">Profile</Nav.Link>
                   <Nav.Link onClick={Auth.logout} >Logout </Nav.Link>
@@ -34,7 +35,6 @@ import { useLocation } from "react-router-dom";
               myhealthspace
             </Navbar.Brand>
             )}
-            <Nav.Link as={Link} to="/donate" eventKey="3" >Donate</Nav.Link>
         </Navbar >
       );
     }
