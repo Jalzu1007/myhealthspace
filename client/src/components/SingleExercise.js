@@ -10,10 +10,7 @@ import cardioIcon from "../images/cardio.png"
 import resistanceIcon from "../images/resistance.png"
 import { DELETE_WORKOUT} from '../utils/mutations';
 import { UPDATE_WORKOUT } from '../utils/mutations';
-import Cardio from '../components/Cardio';
-import Resistance from '../components/Resistance';
 import { QUERY_USER } from '../utils/queries';
-import { Card } from 'react-bootstrap';
 
 export default function SingleExercise() {
     const { id, type } = useParams();
@@ -92,7 +89,6 @@ export default function SingleExercise() {
     // Define the DELETE_EXERCISE mutation
     const [deleteWorkout] = useMutation(DELETE_WORKOUT);
     
-
     useEffect(() => {
       if (data && data.getUser) {
         const savedCardioWorkout = data.getUser.savedWorkouts.find(
@@ -137,45 +133,6 @@ export default function SingleExercise() {
         }
       };
     }, [data, id]);
-
-    // useEffect(() => {
-    //      const displayExercise = async (_id) => {
-    //         //get token
-    //          const token =  Auth.getToken();
-
-    //          if (!token) return false;
-
-    //         // fetch cardio data by id
-    //         if (type === "cardio") {
-    //             try {
-    //                  const response = await deleteWorkout(_id, token);
-    //                 if (!response.ok) { throw new Error('something went wrong!') }
-
-    //                 const cardio = await response.json()
-    //                 cardio.date = formatDate(cardio.date)
-    //                 setCardioData(cardio)
-    //              } catch (err) { console.error(err) }
-    //         }
-
-    //         // fetch resistance data by id
-    //         else if (type === "resistance") {
-    //              try {
-    //                 const response = await deleteWorkout(_id, token);
-    //                  if (!response.ok) { throw new Error('something went wrong!') }
-
-    //                  const resistance = await response.json()
-    //                 resistance.date = formatDate(resistance.date)
-    //                 setResistanceData(resistance)
-    //             } catch (err) { console.error(err) }
-    //         }
-    //      }
-
-    //     displayExercise(id)
-    // }, [id, type, loggedIn])
-
-    //  if (!loggedIn) {
-    //     return <Navigate to="/login" />;
-    //  }
 
     const handleDeleteWorkout = async () => {
         const token = loggedIn ? Auth.getToken() : null;
@@ -234,28 +191,6 @@ export default function SingleExercise() {
           ],
         });
       };
-
-// const handleUpdateWorkout = async (id, updatedData) => {
-//   try {
-//     const { data } = await updateWorkout({
-//       variables: { id, input: updatedData },
-//     });
-
-//     // Check the response to see if the workout was successfully updated
-//     if (data.updateWorkout) {
-//       // Handle success, e.g., update the UI or display a success message
-//       console.log('Workout updated successfully');
-//       // You may want to refresh the data after updating.
-//       // You can call the displayExercise function or refetch your data here.
-//     } else {
-//       // Handle failure, e.g., show an error message
-//       console.error('Failed to update workout');
-//     }
-//   } catch (error) {
-//     // Handle any errors that occur during the mutation
-//     console.error('Error updating workout', error);
-//   }
-//};
 
 return (
   <div className={type === "cardio" ? "single-cardio" : "single-resistance"}>

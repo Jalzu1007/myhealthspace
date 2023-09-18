@@ -8,6 +8,7 @@ import cardioIcon from '../images/cardio.png';
 import resistanceIcon from '../images/resistance.png';
 import { useQuery } from '@apollo/client';
 import { Card } from 'react-bootstrap';
+
 export default function Profile() {
   const [userData, setUserData] = useState({});
   const [exerciseData, setExerciseData] = useState([]);
@@ -27,10 +28,12 @@ export default function Profile() {
       const cardio = workouts.cardio;
       const resistance = workouts.resistance;
       const exercise = cardio.concat(resistance);
+
       // Sort exercises by date
       exercise.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
       });
+
       // Format date in exercise data
       exercise.forEach((item) => {
         item.date = formatDate(item.date);
@@ -38,6 +41,7 @@ export default function Profile() {
       setUserData(workouts);
       setExerciseData(exercise);
     }
+
   function showMoreItems() {
     setDisplayedItems(displayedItems + 6);
   }
@@ -45,6 +49,7 @@ export default function Profile() {
   if (!loggedIn) {
     return <Navigate to="/login" />;
   }
+
   return (
     <div>
       <Header />
@@ -63,6 +68,7 @@ export default function Profile() {
                       currentDate = exercise.date;
                       dateToDisplay = exercise.date;
                     }
+                    
                     return (
                       <div className="history-div d-flex" key={exercise._id}>
                         <div className="date d-flex align-items-center">{dateToDisplay}</div>
@@ -86,6 +92,7 @@ export default function Profile() {
                       </div>
                     )
                   })}
+
                   {/* Show more items */}
                   {exerciseData.length > displayedItems ? (
                     <div className="d-flex justify-content-center">

@@ -15,14 +15,12 @@ app.get("/", (req, res) => {
   res.send("IT WORKS ");
 });
 
-
 app.post("/checkout", (req, res) => {
   const { number, token } = req.body;
   console.log("AMOUNT ", number);
 
   const idempontencyKey = uuidv4();
 
-  
  stripe.checkout.sessions.create({
     success_url: 'http://localhost:3000/success',
     cancel_url: 'https://localhost:3000/cancel',

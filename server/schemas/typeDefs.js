@@ -28,7 +28,6 @@ const typeDefs = gql`
     sets: Int
     reps: Int
     date: String!
-    # userId: ID!
   }
   type Auth {
     token: String!

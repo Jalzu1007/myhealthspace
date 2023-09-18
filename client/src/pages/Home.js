@@ -10,7 +10,6 @@ export default function Home() {
 
   return (
     <div className="homepage">
-    
        <Header />
       {<Container className="home d-flex flex-column align-items-center justify-content-center flex-wrap text-center">
         <h1 className="home-title">Your Daily Exercise Partner</h1>
