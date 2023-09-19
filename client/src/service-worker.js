@@ -4,7 +4,6 @@ import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
-const self = this
 
 clientsClaim();
 
@@ -13,7 +12,7 @@ clientsClaim();
 // This variable must be present somewhere in your service worker file,
 // even if you decide not to use precaching. See https://cra.link/PWA
 // change self to window.self if const self = this not working
-precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(window.self.__WB_MANIFEST);
 
 // Set up App Shell-style routing, so that all navigation requests
 // are fulfilled with your index.html shell. Learn more at
@@ -43,7 +42,7 @@ registerRoute(
 
   registerRoute(
     // Add in any other file extensions or routing criteria as needed.
-    ({ url }) => url.origin === self.location.origin && url.pathname.match('images'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+    ({ url }) => url.origin === window.self.location.origin && url.pathname.match('images'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
     new StaleWhileRevalidate({
       cacheName: 'images',
       plugins: [
@@ -56,8 +55,8 @@ registerRoute(
   
   // This allows the web app to trigger skipWaiting via
   // registration.waiting.postMessage({type: 'SKIP_WAITING'})
- self.addEventListener('message', (event) => {
+ window.self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
-      self.skipWaiting();
+      window.self.skipWaiting();
     }
   });
