@@ -7,18 +7,17 @@ myhealthspace is a user-friendly web application, designed with fitness enthusia
 
 ## Table of Contents
 
-- [Description](#description)
-- [Technology](#Technology)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Credits](#credits)
 - [License](#license)
-- [Contribution](#contribution)
+- [How to Contribute](#contribution)
 - [Questions](#questions)
 
 ## Installation
 To run this MERN application locally, follow these steps:
 
-1. Clone the repository to your local machine: `git clone https://github.com/andreaber23/myhealthspace.git
+1. Clone the repository to your local machine: `git clone https://github.com/andreaber23/myhealthspace.git`
 2. Navigate to the project directory using the terminal.
 3. Run `npm install` to install the required dependencies.
 4. Start the client and the server: `npm run develop` 
@@ -56,21 +55,69 @@ Log Out:
 When you're done, log out of your account to keep your data secure.
 Feel free to customize and expand upon this usage guide to provide more specific instructions or features unique to your fitness tracking application.
 
+To experience the application, visit the deployed Heroku website: [myhealthspace](https://my-health-space-e9d209a11adb.herokuapp.com/)
+
+myhealthspace walkthrough video: 
+
+[![myhealthspace](https://img.youtube.com/vi/Osp-HWAlOKw/0.jpg)](https://youtu.be/Osp-HWAlOKw)
+
+## Credits
+
+  Collaborators for myhealthspace Application:
+
+  Andrea Berrios - https://github.com/andreaber23
+
+  Elizabeth Jimenez - https://github.com/jimen8930
+
+  Cristina Alzuri - https://github.com/calzu0821
+
+  Josh Connell - https://github.com/CIJoshTC
+
+  Jose Alzuri - https://github.com/Jalzu1007
+
 ## License
 
 This project is licensed under MIT, for more information please visit: [MIT](https://opensource.org/licenses/MIT)
 
-## Contribution
-Open to collaboration, if you choose to do so open an issue and modify any changes you would like to see on a feature branch and wait for approval before merging to the main branch.
+MIT License
+
+  Copyright (c) 2023 myhealthspace
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+## How to Contribute
+
+We welcome any ideas and contributions to this repository. If you are interested in contributing, feel free to open an issue or submit a pull request.
 
 ## Questions
 
-Have additional questions? Click the links below to us reach us through GitHub or Email.
-https://github.com/Jalzu1007
-https://github.com/andreaber23
-https://github.com/CIJoshTC
-https://github.com/calzu0821
-https://github.com/jimen8930
+If you have any questions about the repository or the application, please open an issue, and we will respond as soon as possible. You can also explore more of our projects on GitHub:
+
+- https://github.com/Jalzu1007
+
+- https://github.com/andreaber23
+
+- https://github.com/CIJoshTC
+
+- https://github.com/calzu0821
+
+- https://github.com/jimen8930
 
 
 
